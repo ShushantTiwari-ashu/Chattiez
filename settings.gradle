@@ -1,0 +1,5 @@
+rootProject.name = "PropertyApp"
+include ':app'
+include ':navigation'
+include ':common-ui-compose'
+include ':core-data'
