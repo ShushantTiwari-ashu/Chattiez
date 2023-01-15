@@ -14,45 +14,73 @@
 
 package com.shushant.navigation
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import androidx.navigation.NavController
+import androidx.navigation.NavOptionsBuilder
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onSubscription
 
-val LocalNavigator = staticCompositionLocalOf<Navigator> {
-    error("No LocalNavigator given")
+abstract class Navigator {
+    val navigationCommands =
+        MutableSharedFlow<NavigationCommand>(extraBufferCapacity = Int.MAX_VALUE)
+
+    // We use a StateFlow here to allow ViewModels to start observing navigation results before the initial composition,
+    // and still get the navigation result later
+    val navControllerFlow = MutableStateFlow<NavController?>(null)
+
+    fun navigateUp() {
+        navigationCommands.tryEmit(NavigationCommand.NavigateUp)
+    }
 }
 
-@Composable
-fun NavigatorHost(
-    viewModel: NavigatorViewModel = hiltViewModel(),
-    content: @Composable () -> Unit
-) {
-    CompositionLocalProvider(LocalNavigator provides viewModel.navigator, content = content)
-}
+abstract class AppComposeNavigator : Navigator() {
+    abstract fun navigate(route: String, optionsBuilder: (NavOptionsBuilder.() -> Unit)? = null)
+    abstract fun <T> navigateBackWithResult(key: String, result: T, route: String?)
 
-sealed class NavigationEvent(open val route: String) {
-    object Back : NavigationEvent("Back")
-    data class Destination(override val route: String, val root: String? = null) :
-        NavigationEvent(route)
+    abstract fun popUpTo(route: String, inclusive: Boolean)
+    abstract fun navigateAndClearBackStack(route: String)
 
-    override fun toString() = route
-}
-
-class Navigator {
-    private val navigationQueue = Channel<NavigationEvent>(Channel.CONFLATED)
-
-    fun navigate(route: String) {
-        val basePath = route.split("/").firstOrNull()
-        val root = if (TAB_ROOT_SCREENS.any { it.route == basePath }) basePath else null
-        navigationQueue.trySend(NavigationEvent.Destination(route, root))
+    suspend fun handleNavigationCommands(navController: NavController) {
+        navigationCommands
+            .onSubscription { this@AppComposeNavigator.navControllerFlow.value = navController }
+            .onCompletion { this@AppComposeNavigator.navControllerFlow.value = null }
+            .collect { navController.handleComposeNavigationCommand(it) }
     }
 
-    fun goBack() {
-        navigationQueue.trySend(NavigationEvent.Back)
+    private fun NavController.handleComposeNavigationCommand(navigationCommand: NavigationCommand) {
+        when (navigationCommand) {
+            is ComposeNavigationCommand.NavigateToRoute -> {
+                navigate(navigationCommand.route, navigationCommand.options)
+            }
+            NavigationCommand.NavigateUp -> navigateUp()
+            is ComposeNavigationCommand.PopUpToRoute -> popBackStack(
+                navigationCommand.route,
+                navigationCommand.inclusive
+            )
+            is ComposeNavigationCommand.NavigateUpWithResult<*> -> {
+                navUpWithResult(navigationCommand)
+            }
+        }
     }
 
-    val queue = navigationQueue.receiveAsFlow()
+    private fun NavController.navUpWithResult(
+        navigationCommand: ComposeNavigationCommand.NavigateUpWithResult<*>
+    ) {
+        val backStackEntry =
+            navigationCommand.route?.let { getBackStackEntry(it) }
+                ?: previousBackStackEntry
+        backStackEntry?.savedStateHandle?.set(
+            navigationCommand.key,
+            navigationCommand.result
+        )
+
+        navigationCommand.route?.let {
+            popBackStack(it, false)
+        } ?: run {
+            navigateUp()
+        }
+    }
+
+    fun canNavUp(navController: NavController): Boolean = navController.backQueue.isNotEmpty()
 }

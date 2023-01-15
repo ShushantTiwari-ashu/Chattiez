@@ -13,8 +13,8 @@
  */
 
 
-import com.shushant.propertyapp.buildSrc.App
-import com.shushant.propertyapp.buildSrc.Deps
+import com.shushant.chattiez.buildSrc.App
+import com.shushant.chattiez.buildSrc.Deps
 
 plugins {
     id "com.android.library"
@@ -45,7 +45,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.shushant.propertyapp.coreData'
+    namespace 'com.shushant.chattiez.coreData'
 }
 
 repositories {

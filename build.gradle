@@ -1,4 +1,4 @@
-import com.shushant.propertyapp.buildSrc.Deps
+import com.shushant.chattiez.buildSrc.Deps
 
 buildscript {
     repositories {
