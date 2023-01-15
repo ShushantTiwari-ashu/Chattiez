@@ -2,9 +2,12 @@ package com.shushant.common.compose.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.unit.sp
+import com.shushant.chattiez.common.compose.R
 
 val Typography = Typography(
     displayLarge = TextStyle(
@@ -12,80 +15,46 @@ val Typography = Typography(
         fontSize = 57.sp,
         lineHeight = 64.sp,
         letterSpacing = (-0.25).sp
-    ),
-    displayMedium = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 45.sp,
-        lineHeight = 52.sp
-    ),
-    displaySmall = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 36.sp,
-        lineHeight = 44.sp
-    ),
-    headlineLarge = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 32.sp,
-        lineHeight = 40.sp
-    ),
-    headlineMedium = TextStyle(
-        fontWeight = FontWeight.W400,
+    ), displayMedium = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 45.sp, lineHeight = 52.sp
+    ), displaySmall = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 36.sp, lineHeight = 44.sp
+    ), headlineLarge = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 32.sp, lineHeight = 40.sp
+    ), headlineMedium = TextStyle(
+        fontWeight = FontWeight.W700,
+        fontFamily = Font(R.font.poppins_bold).toFontFamily(),
         fontSize = 28.sp,
-        lineHeight = 36.sp
-    ),
-    headlineSmall = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 17.sp,
-        lineHeight = 32.sp
-    ),
-    titleLarge = TextStyle(
-        fontWeight = FontWeight.W700,
-        fontSize = 20.sp,
-        lineHeight = 28.sp
-    ),
-    titleMedium = TextStyle(
-        fontWeight = FontWeight.W700,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.1.sp
-    ),
-    titleSmall = TextStyle(
+        lineHeight = 42.sp
+    ), headlineSmall = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 17.sp, lineHeight = 32.sp
+    ), titleLarge = TextStyle(
+        fontWeight = FontWeight.W700, fontSize = 20.sp, lineHeight = 28.sp
+    ), titleMedium = TextStyle(
+        fontWeight = FontWeight.W700, fontSize = 16.sp, lineHeight = 24.sp, letterSpacing = 0.1.sp
+    ), titleSmall = TextStyle(
         fontWeight = FontWeight.W500,
+        fontFamily = Font(R.font.poppins_regular).toFontFamily(),
         fontSize = 14.sp,
-        lineHeight = 20.sp,
+        lineHeight = 22.sp,
         letterSpacing = 0.1.sp
     ),
+    // Light - Body
     bodyLarge = TextStyle(
+        fontFamily = Font(R.font.poppins_regular).toFontFamily(),
         fontWeight = FontWeight.W400,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
-    ),
-    bodyMedium = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
-    ),
-    bodySmall = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
-    ),
-    labelLarge = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
-    ),
-    labelMedium = TextStyle(
-        fontWeight = FontWeight.W400,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    ),
-    labelSmall = TextStyle(
+    ), bodyMedium = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 14.sp, lineHeight = 20.sp, letterSpacing = 0.25.sp
+    ), bodySmall = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 12.sp, lineHeight = 16.sp, letterSpacing = 0.4.sp
+    ), labelLarge = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 14.sp, lineHeight = 20.sp, letterSpacing = 0.1.sp
+    ), labelMedium = TextStyle(
+        fontWeight = FontWeight.W400, fontSize = 12.sp, lineHeight = 16.sp, letterSpacing = 0.5.sp
+    ), labelSmall = TextStyle(
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.W500,
         fontSize = 10.sp,

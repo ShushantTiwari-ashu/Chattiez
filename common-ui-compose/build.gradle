@@ -90,5 +90,5 @@ dependencies {
     coreLibraryDesugaring Deps.Android.desugaring
 
     // 3rd party
-//    api Deps.Android.Compose.coil
+    api Deps.Android.Compose.coil
 }

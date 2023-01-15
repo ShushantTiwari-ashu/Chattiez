@@ -6,6 +6,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -67,3 +68,34 @@ fun ChattiezTheme(
         )
     }
 }
+
+val textColor: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = if (isSystemInDarkTheme())
+        TextColorWhite
+    else
+        TextColorBlack
+
+val circleProgressColor: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = if (isSystemInDarkTheme())
+        PRIMARY500
+    else
+        CircleStrokeColor
+val centerCircleColor: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = if (isSystemInDarkTheme())
+        PRIMARY700
+    else
+        WHITE200
+
+val buttonColor: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = if (isSystemInDarkTheme())
+        BUTTON_COLOR_PURPLE
+    else
+        WHITE200

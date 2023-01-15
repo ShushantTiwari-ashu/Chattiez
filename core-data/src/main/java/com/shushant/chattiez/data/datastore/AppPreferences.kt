@@ -15,7 +15,7 @@
 package com.shushant.chattiez.data.datastore
 
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.KSerializer
 
@@ -23,7 +23,7 @@ class AppPreferences(private val datastoreUtils: DatastoreUtils) :
     PrefStorage {
 
     companion object {
-        val THEME_STATE_KEY = stringPreferencesKey(name = "theme_state")
+        val THEME_STATE_KEY = booleanPreferencesKey(name = "theme_state")
     }
 
     private suspend fun <T> setValue(
@@ -54,4 +54,10 @@ class AppPreferences(private val datastoreUtils: DatastoreUtils) :
     ): Flow<T> =
         datastoreUtils.getValue(name, serializer, defaultValue)
 
+    override suspend fun setCurrentTheme(isDark: Boolean) {
+        setValue(THEME_STATE_KEY, value = isDark)
+    }
+
+    override val getThemeState: Flow<Boolean>
+        get() = getValue(THEME_STATE_KEY, false)
 }

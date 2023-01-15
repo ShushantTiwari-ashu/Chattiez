@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.shushant.navigation.AppComposeNavigator
@@ -45,9 +46,10 @@ fun SplashScreen(composeNavigator: AppComposeNavigator) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = ChatIcons.BG_SVG.drawable),
+            painter = painterResource(id = ChatIcons.BG.drawable),
             contentDescription = "",
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
         )
 
         Image(
