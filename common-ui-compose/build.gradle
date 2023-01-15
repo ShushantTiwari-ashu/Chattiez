@@ -12,8 +12,8 @@
  * See the GNU General Public License for more details.
  */
 
-import com.shushant.propertyapp.buildSrc.App
-import com.shushant.propertyapp.buildSrc.Deps
+import com.shushant.chattiez.buildSrc.App
+import com.shushant.chattiez.buildSrc.Deps
 
 plugins {
     id "com.android.library"
@@ -48,7 +48,7 @@ android {
     lint {
         disable 'GradleCompatible'
     }
-    namespace 'com.shushant.propertyapp.common.compose'
+    namespace 'com.shushant.chattiez.common.compose'
 }
 
 repositories {
@@ -59,8 +59,11 @@ dependencies {
     // Android
     api Deps.Android.navigationCompose
     api Deps.Android.navigationHiltCompose
+    implementation project(Deps.Modules.CommonResource)
 
     api Deps.Android.Compose.ui
+    api Deps.Android.Compose.material3Design
+    api Deps.Android.Compose.material3WindowSize
     api Deps.Android.Compose.uiUtil
     api Deps.Android.Compose.uiTooling
     api Deps.Android.Compose.foundation

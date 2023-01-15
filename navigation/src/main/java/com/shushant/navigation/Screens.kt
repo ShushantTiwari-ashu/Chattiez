@@ -14,67 +14,51 @@
 
 package com.shushant.navigation
 
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
-import androidx.navigation.*
-import com.google.accompanist.navigation.animation.composable
-import java.util.*
+import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
-interface Screen {
-    val route: String
-}
-
-val TAB_ROOT_SCREENS = listOf(
-    TabRootScreen.HomeTab,
-)
-
-sealed class TabRootScreen(
-    override val route: String,
-    val startScreen: LeafScreen,
-    val arguments: List<NamedNavArgument> = emptyList(),
-    val deepLinks: List<NavDeepLink> = emptyList(),
-) : Screen {
-    object HomeTab : TabRootScreen("home_tab", LeafScreen.HomeTab())
-}
-
-sealed class LeafScreen(
-    override val route: String,
-    open val root: TabRootScreen? = null,
-    protected open val path: String = "",
-    val arguments: List<NamedNavArgument> = emptyList(),
-    val deepLinks: List<NavDeepLink> = emptyList(),
-) : Screen {
-
-
-    fun createRoute(root: TabRootScreen? = null) =
-        when (val rootPath = (root ?: this.root)?.route) {
-            is String -> "$rootPath/$route"
-            else -> route
-        }
-
-    data class HomeTab(override val route: String = "home_tab") :
-        LeafScreen(route, TabRootScreen.HomeTab)
-}
-
-@OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.composableScreen(
-    screen: LeafScreen,
-    content: @Composable AnimatedVisibilityScope.(NavBackStackEntry) -> Unit
+sealed class ChattiezScreens(
+    val route: String,
+    val index: Int? = null,
+    val navArguments: List<NamedNavArgument> = emptyList()
 ) {
-    composable(
-        route = screen.createRoute(),
-        arguments = screen.arguments,
-        deepLinks = screen.deepLinks,
-        content = content
-    )
+    val name: String = route.appendArguments(navArguments)
+
+    // channel screen
+    object Channels : ChattiezScreens("channels")
+
+    // login screen
+    object Splash : ChattiezScreens("splash")
+
+    // login screen
+    object OnBoarding : ChattiezScreens("on_boarding")
+
+    // login screen
+    object Login : ChattiezScreens("login")
+
+    // message screen
+    object Messages : ChattiezScreens(
+        route = "messages",
+        navArguments = listOf(navArgument(argument_channel_id) { type = NavType.StringType })
+    ) {
+        fun createRoute(channelId: String) =
+            name.replace("{${navArguments.first().name}}", channelId)
+    }
+
+    companion object {
+        const val argument_channel_id = "channelId"
+    }
 }
 
-@Composable
-inline fun <reified VM : ViewModel> NavBackStackEntry.scopedViewModel(navController: NavController): VM {
-    val parentId = destination.parent!!.id
-    val parentBackStackEntry = navController.getBackStackEntry(parentId)
-    return hiltViewModel(parentBackStackEntry)
+private fun String.appendArguments(navArguments: List<NamedNavArgument>): String {
+    val mandatoryArguments = navArguments.filter { it.argument.defaultValue == null }
+        .takeIf { it.isNotEmpty() }
+        ?.joinToString(separator = "/", prefix = "/") { "{${it.name}}" }
+        .orEmpty()
+    val optionalArguments = navArguments.filter { it.argument.defaultValue != null }
+        .takeIf { it.isNotEmpty() }
+        ?.joinToString(separator = "&", prefix = "?") { "${it.name}={${it.name}}" }
+        .orEmpty()
+    return "$this$mandatoryArguments$optionalArguments"
 }
