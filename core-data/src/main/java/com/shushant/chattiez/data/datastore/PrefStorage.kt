@@ -14,6 +14,9 @@
 
 package com.shushant.chattiez.data.datastore
 
-interface PrefStorage {
+import kotlinx.coroutines.flow.Flow
 
+interface PrefStorage {
+    suspend fun setCurrentTheme(isDark: Boolean)
+    val getThemeState: Flow<Boolean>
 }

@@ -5,12 +5,12 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.shushant.common.compose.theme.PURPLE450
+import androidx.compose.ui.graphics.Color
 
 @Composable
-fun BoxScope.ChattiezLoadingIndicator() {
-  CircularProgressIndicator(
-    modifier = Modifier.align(Alignment.Center),
-    color = PURPLE450
-  )
+fun BoxScope.ChattiezLoadingIndicator(color: Color) {
+    CircularProgressIndicator(
+        modifier = Modifier.align(Alignment.Center),
+        color = color
+    )
 }

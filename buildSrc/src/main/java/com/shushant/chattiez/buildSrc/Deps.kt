@@ -56,14 +56,18 @@ object Deps {
             const val version = "1.4.0-alpha01"
             const val compilerVersion = "1.3.2"
             const val composeMaterialVersion = "1.0.1"
+            const val composeRuntimeVersion = "1.3.3"
 
             const val ui = "androidx.compose.ui:ui:$version"
             const val uiUtil = "androidx.compose.ui:ui-util:$version"
             const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
+            const val composeRuntime = "androidx.compose.runtime:runtime:$composeRuntimeVersion"
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val materialDesign = "androidx.compose.material:material:$version"
-            const val material3Design = "androidx.compose.material3:material3:$composeMaterialVersion"
-            const val material3WindowSize = "androidx.compose.material3:material3-window-size-class:$composeMaterialVersion"
+            const val material3Design =
+                "androidx.compose.material3:material3:$composeMaterialVersion"
+            const val material3WindowSize =
+                "androidx.compose.material3:material3-window-size-class:$composeMaterialVersion"
             const val materialDesignIcons = "androidx.compose.material:material-icons-core:$version"
             const val materialDesignIconsExtended =
                 "androidx.compose.material:material-icons-extended:$version"
@@ -197,5 +201,6 @@ object Deps {
         const val CoreData = ":core-data"
         const val Navigation = ":navigation"
         const val FeatureSplash = ":feature-splash"
+        const val FeatureAuth = ":feature-auth"
     }
 }

@@ -35,7 +35,7 @@ sealed class ChattiezScreens(
     object OnBoarding : ChattiezScreens("on_boarding")
 
     // login screen
-    object Login : ChattiezScreens("login")
+    object AuthFlow : ChattiezScreens("auth_flow")
 
     // message screen
     object Messages : ChattiezScreens(

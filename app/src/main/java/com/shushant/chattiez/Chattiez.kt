@@ -2,6 +2,7 @@ package com.shushant.chattiez
 
 import android.app.Application
 import com.shushant.chattiez.data.datastore.datastoreModule
+import com.shushant.chattiez.di.appModule
 import com.shushant.navigation.di.navigationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,9 +17,7 @@ class Chattiez : Application() {
             androidLogger()
             androidContext(this@Chattiez)
             modules(
-                listOf(
-                    navigationModule, datastoreModule
-                )
+                navigationModule, appModule, datastoreModule
             )
         }
     }
