@@ -2,4 +2,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="login_with_google" tools:ignore="ExtraTranslation">Login with Google</string>
     <string name="sign_up_with" tools:ignore="ExtraTranslation">Sign up with email or phone number</string>
+    <string name="or">OR</string>
 </resources>
