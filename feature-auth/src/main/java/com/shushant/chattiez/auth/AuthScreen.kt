@@ -4,18 +4,18 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.auth.R
 import com.shushant.common.compose.theme.*
 import com.shushant.common.compose.ui.ChattiezButton
 import com.shushant.common.compose.ui.GradientButton
+import com.shushant.common.compose.ui.TextWithDivider
 import com.shushant.navigation.AppComposeNavigator
+import com.shushant.navigation.ChattiezScreens
 import com.shushant.resource.ChatIcons
 
 @Composable
@@ -51,38 +51,16 @@ fun AuthScreen(composeNavigator: AppComposeNavigator) {
                 buttonText = stringResource(id = R.string.login_with_google),
                 icon = ChatIcons.GOOGLE
             ) {
-
+                composeNavigator.navigate(ChattiezScreens.Channels.route)
             }
 
             Spacer(modifier = Modifier.height(10.dp))
 
             ChattiezButton(buttonText = stringResource(id = R.string.sign_up_with)) {
-
+                composeNavigator.navigate(ChattiezScreens.Channels.route)
             }
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 30.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Divider(
-                    color = buttonColor,
-                    modifier = Modifier.weight(4f)
-                )
-                Text(
-                    text = "OR",
-                    style = Typography.bodyLarge,
-                    color = textColor,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.weight(1f)
-                )
-                Divider(
-                    color = buttonColor,
-                    modifier = Modifier.weight(4f)
-                )
-            }
+            TextWithDivider(text = stringResource(R.string.or))
 
         }
 
