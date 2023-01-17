@@ -6,11 +6,10 @@ import com.shushant.chatiez.feature.splash.R
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.navigation.ChattiezScreens
 import com.shushant.resource.ChatIcons
-import com.shushant.resource.getIllustration
 import kotlinx.coroutines.delay
 
 @Composable
-fun OnBoarding(composeNavigator: AppComposeNavigator, theme: State<Boolean>) {
+fun OnBoarding(composeNavigator: AppComposeNavigator) {
     val moveScreen = remember {
         mutableStateOf(1)
     }
@@ -36,7 +35,7 @@ fun OnBoarding(composeNavigator: AppComposeNavigator, theme: State<Boolean>) {
         2 -> {
             OnBoardingScreen(
                 bgImage = ChatIcons.BG_ON_BOARDING1,
-                illustration = theme.value.getIllustration,
+                illustration = ChatIcons.ILLUSTRATION,
                 title = stringResource(R.string.stay_connected),
                 subtitle = stringResource(R.string.subtitle2),
                 value = moveScreen.value

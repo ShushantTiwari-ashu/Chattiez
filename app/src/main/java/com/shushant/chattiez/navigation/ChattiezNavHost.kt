@@ -22,8 +22,7 @@ fun ChattiezNavHost(
             composeNavigator = composeNavigator
         )
         chattiezOnBoarding(
-            composeNavigator = composeNavigator,
-            theme = mainViewModel.isDarkTheme()
+            composeNavigator = composeNavigator
         )
         chattiezAuthFlow(
             composeNavigator = composeNavigator

@@ -12,7 +12,7 @@
  * See the GNU General Public License for more details.
  */
 
-package com.shushant.common.compose
+package com.shushant.common.compose.utils
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.SwipeableState
@@ -20,7 +20,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 
 @OptIn(ExperimentalMaterialApi::class)
 class MainPanel constructor(
-    val swappableState: SwipeableState<Int>
+    private val swappableState: SwipeableState<Int>
 ) {
     val isExpanded: Boolean get() = swappableState.currentValue != 0
 

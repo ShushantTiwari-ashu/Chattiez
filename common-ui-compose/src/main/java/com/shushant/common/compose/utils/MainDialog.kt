@@ -12,25 +12,15 @@
  * See the GNU General Public License for more details.
  */
 
-package com.shushant.common.compose
+package com.shushant.common.compose.utils
 
-import android.annotation.SuppressLint
-import android.widget.Toast
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.compositionLocalOf
 
-@SuppressLint("ComposableNaming")
-@Composable
-fun toast(
-    message: String,
-    duration: Int = Toast.LENGTH_SHORT,
-    block: Toast.() -> Unit = {}
-) {
-    val context = LocalContext.current
-    Toast
-        .makeText(context, message, duration)
-        .apply {
-            block(this)
-            show()
-        }
-}
+data class MainDialog(
+    var dialogContent: @Composable () -> Unit = {},
+    var showDialog: () -> Unit = {},
+    var hideDialog: () -> Unit = {}
+)
+
+val LocalDialog = compositionLocalOf { MainDialog() }

@@ -35,7 +35,7 @@ object Deps {
     }
 
     object Android {
-        private const val gradleVersion = "7.3.1"
+        private const val gradleVersion = "7.4.0"
 
         const val gradle = "com.android.tools.build:gradle:$gradleVersion"
 
@@ -63,7 +63,6 @@ object Deps {
             const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
             const val composeRuntime = "androidx.compose.runtime:runtime:$composeRuntimeVersion"
             const val foundation = "androidx.compose.foundation:foundation:$version"
-            const val materialDesign = "androidx.compose.material:material:$version"
             const val material3Design =
                 "androidx.compose.material3:material3:$composeMaterialVersion"
             const val material3WindowSize =
@@ -155,9 +154,11 @@ object Deps {
         const val timber = "com.jakewharton.timber:timber:5.0.1"
         const val junit = "junit:junit:4.13.2"
         const val threeTen = "org.threeten:threetenbp:1.5.1"
+        private const val version = "1.5.2"
 
         const val coilVersion = "2.0.0-alpha02"
         const val coil = "io.coil-kt:coil:$coilVersion"
+        const val balloon = "com.github.skydoves:balloon-compose:$version"
     }
 
 

@@ -1,4 +1,4 @@
-package com.shushant.common.compose
+package com.shushant.common.compose.utils
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache

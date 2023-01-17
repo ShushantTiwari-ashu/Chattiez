@@ -12,7 +12,7 @@
  * See the GNU General Public License for more details.
  */
 
-package com.shushant.common.compose
+package com.shushant.common.compose.utils
 
 import androidx.compose.ui.unit.dp
 
