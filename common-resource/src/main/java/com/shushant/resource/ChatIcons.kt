@@ -9,12 +9,17 @@ enum class ChatIcons(@DrawableRes val drawable: Int) {
     BG_SVG(R.drawable.bg),
     ILLUSTRATION(R.drawable.illustration),
     GOOGLE(R.drawable.google),
-    ILLUSTRATION_1(R.drawable.illustration1),
-    ILLUSTRATION_1_NIGHT(R.drawable.illustration1_night),
+    APPLE(R.drawable.apple),
+    GITHUB(R.drawable.github),
+    FACEBOOK(R.drawable.facebook),
+    USERNAME(R.drawable.username),
+    EMAIL(R.drawable.email),
+    PASSWORD(R.drawable.password),
+    PASSWORD_TOGGLE(R.drawable.password_toggle),
+    PASSWORD_TOGGLE_OFF(R.drawable.baseline_visibility_off_24),
+    GOOGLE_COLOURED(R.drawable.google_colored),
     PAGINATION_1(R.drawable.pagination_1),
     PAGINATION_2(R.drawable.pagination_2),
     GRADIENT_BG(R.drawable.gradient_text),
 }
-
-val Boolean.getIllustration: ChatIcons
-    get() = if (this) ChatIcons.ILLUSTRATION_1_NIGHT else ChatIcons.ILLUSTRATION_1
+fun Boolean.getPasswordToggle() = if (this) ChatIcons.PASSWORD else ChatIcons.PASSWORD_TOGGLE

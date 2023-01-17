@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
-import com.shushant.common.compose.LocalOnFinishDispatcher
+import com.shushant.common.compose.utils.LocalOnFinishDispatcher
 import com.shushant.common.compose.theme.ChattiezTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

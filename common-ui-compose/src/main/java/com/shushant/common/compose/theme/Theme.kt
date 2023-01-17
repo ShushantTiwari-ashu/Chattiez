@@ -30,7 +30,7 @@ private val LightChattiezColorScheme = lightColorScheme(
 )
 
 /** Light Android background theme */
-private val LightAndroidBackgroundTheme = BackgroundTheme(color = Color.White)
+private val LightAndroidBackgroundTheme = BackgroundTheme(color = LIGHT_COLOR)
 
 /** Dark Android background theme */
 private val DarkAndroidBackgroundTheme = BackgroundTheme(color = DARK_PURPLE300)

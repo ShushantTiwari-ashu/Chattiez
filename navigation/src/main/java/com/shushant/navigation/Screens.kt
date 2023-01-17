@@ -31,11 +31,14 @@ sealed class ChattiezScreens(
     // login screen
     object Splash : ChattiezScreens("splash")
 
-    // login screen
+    // onBoarding screen
     object OnBoarding : ChattiezScreens("on_boarding")
 
-    // login screen
+    // auth screen
     object AuthFlow : ChattiezScreens("auth_flow")
+
+    // auth screen
+    object Login : ChattiezScreens("login")
 
     // message screen
     object Messages : ChattiezScreens(

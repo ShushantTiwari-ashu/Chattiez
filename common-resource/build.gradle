@@ -64,7 +64,7 @@ dependencies {
     api Deps.Android.Compose.uiUtil
     api Deps.Android.Compose.uiTooling
     api Deps.Android.Compose.foundation
-    api Deps.Android.Compose.materialDesign
+    api Deps.Android.Compose.material3Design
     api Deps.Android.Compose.materialDesignIcons
     api Deps.Android.Compose.materialDesignIconsExtended
     api Deps.Android.Compose.constraintLayout

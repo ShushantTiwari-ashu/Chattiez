@@ -1,4 +1,4 @@
-package com.shushant.common.compose
+package com.shushant.common.compose.utils
 
 import androidx.compose.runtime.compositionLocalOf
 

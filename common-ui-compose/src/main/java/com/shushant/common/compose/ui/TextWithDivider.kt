@@ -26,6 +26,7 @@ fun TextWithDivider(text: String) {
     ) {
         Divider(
             color = buttonColor,
+            thickness = 2.dp,
             modifier = Modifier.weight(4f)
         )
         Text(
@@ -37,6 +38,7 @@ fun TextWithDivider(text: String) {
         )
         Divider(
             color = buttonColor,
+            thickness = 2.dp,
             modifier = Modifier.weight(4f)
         )
     }

@@ -1,25 +1,27 @@
 package com.shushant.chattiez.splash.boarding
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.splash.R
-import com.shushant.common.compose.textBrush
+import com.shushant.common.compose.brush
 import com.shushant.common.compose.theme.*
 import com.shushant.common.compose.ui.ComposeCircularProgressBar
 import com.shushant.resource.ChatIcons
 
+@OptIn(ExperimentalTextApi::class)
 @Composable
 fun OnBoardingScreen(
     bgImage: ChatIcons,
@@ -29,6 +31,17 @@ fun OnBoardingScreen(
     value: Int,
     skipClick: () -> Unit
 ) {
+    val infiniteTransition = rememberInfiniteTransition()
+
+    val offset by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 2000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -68,16 +81,9 @@ fun OnBoardingScreen(
 
             Text(
                 text = title,
-                style = Typography.headlineMedium,
+                style = Typography.headlineMedium.copy(brush = offset.brush),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .textBrush(
-                        Brush.linearGradient(
-                            colors = listOf(
-                                GradientStart, GradientEnd
-                            ), tileMode = TileMode.Mirror
-                        )
-                    )
                     .fillMaxWidth()
                     .padding(top = 50.dp)
             )
