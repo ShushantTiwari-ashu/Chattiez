@@ -16,7 +16,7 @@ import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.splash.R
-import com.shushant.common.compose.brush
+import com.shushant.common.compose.utils.brush
 import com.shushant.common.compose.theme.*
 import com.shushant.common.compose.ui.ComposeCircularProgressBar
 import com.shushant.resource.ChatIcons

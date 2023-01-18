@@ -17,7 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.shushant.common.compose.brush
+import com.shushant.common.compose.utils.brush
 import com.shushant.common.compose.theme.LIGHT_COLOR
 import com.shushant.common.compose.theme.Typography
 import com.shushant.resource.ChatIcons

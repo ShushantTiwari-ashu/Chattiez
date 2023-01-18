@@ -21,14 +21,12 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.input.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.auth.R
-import com.shushant.common.compose.textFieldColors
+import com.shushant.common.compose.utils.textFieldColors
 import com.shushant.common.compose.theme.PRIMARY500
 import com.shushant.common.compose.theme.Typography
 import com.shushant.common.compose.theme.textColor
@@ -71,7 +69,11 @@ fun LoginFields(onEmailChange: (String) -> Unit, onPasswordChange: (String) -> U
                 )
             )
         },
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next,
+            capitalization = KeyboardCapitalization.Sentences,
+            keyboardType = KeyboardType.Email
+        ),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()

@@ -85,6 +85,11 @@ dependencies {
     api Deps.Android.Accompanist.navigationMaterial
     api Deps.Android.Accompanist.navigationFlowlayout
     api Deps.Android.Accompanist.navigationAnimation
+    api Deps.Utils.lottie
+    api Deps.Utils.coil
+    api Deps.Utils.coilCompose
+    api Deps.Utils.coilSvg
+    implementation 'androidx.browser:browser:1.4.0'
 
     coreLibraryDesugaring Deps.Android.desugaring
 

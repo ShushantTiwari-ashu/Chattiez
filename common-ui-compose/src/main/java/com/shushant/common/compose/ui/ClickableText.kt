@@ -7,11 +7,14 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import com.shushant.common.compose.theme.PRIMARY500
 import com.shushant.common.compose.theme.Typography
+import com.shushant.common.compose.theme.textColor
 
 @Composable
 fun ChattiezClickableText(click: (String) -> Unit) {
     val annotatedString = buildAnnotatedString {
-        append("Don't have an account? ")
+        withStyle(style = SpanStyle(color  = textColor)) {
+            append("Don't have an account? ")
+        }
         pushStringAnnotation(tag = "account", annotation = "Don't have an account? ")
         withStyle(style = SpanStyle(color = PRIMARY500)) {
             append("Sign up")
