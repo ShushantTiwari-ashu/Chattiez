@@ -11,6 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.auth.R
+import com.shushant.chattiez.auth.common.BottomSection
 import com.shushant.common.compose.theme.Typography
 import com.shushant.common.compose.theme.textColor
 import com.shushant.common.compose.ui.ChattiezClickableText
@@ -24,7 +25,7 @@ fun LoginScreen(composeNavigator: AppComposeNavigator) {
     Column(
         modifier = Modifier
             .statusBarsPadding()
-            .padding(vertical = 120.dp, horizontal = 20.dp)
+            .padding(top = 100.dp, start = 20.dp, end = 20.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(20.dp)
@@ -51,5 +52,7 @@ fun LoginScreen(composeNavigator: AppComposeNavigator) {
         ChattiezClickableText {
             context.toast(message = it)
         }
+
+        BottomSection()
     }
 }

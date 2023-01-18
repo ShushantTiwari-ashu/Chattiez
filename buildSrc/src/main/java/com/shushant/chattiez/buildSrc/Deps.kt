@@ -155,10 +155,14 @@ object Deps {
         const val junit = "junit:junit:4.13.2"
         const val threeTen = "org.threeten:threetenbp:1.5.1"
         private const val version = "1.5.2"
+        private const val lottieVersion = "5.2.0"
 
         const val coilVersion = "2.0.0-alpha02"
         const val coil = "io.coil-kt:coil:$coilVersion"
+        const val coilSvg = "io.coil-kt:coil-svg:$coilVersion"
+        const val coilCompose = "io.coil-kt:coil-compose:$coilVersion"
         const val balloon = "com.github.skydoves:balloon-compose:$version"
+        const val lottie = "com.airbnb.android:lottie-compose:$lottieVersion"
     }
 
 
