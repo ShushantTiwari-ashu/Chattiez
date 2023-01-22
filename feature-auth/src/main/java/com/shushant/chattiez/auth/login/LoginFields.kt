@@ -12,7 +12,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -26,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.auth.R
+import com.shushant.common.compose.theme.Dimens
 import com.shushant.common.compose.utils.textFieldColors
 import com.shushant.common.compose.theme.PRIMARY500
 import com.shushant.common.compose.theme.Typography
@@ -37,14 +37,13 @@ import com.shushant.resource.getPasswordToggle
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun LoginFields(onEmailChange: (String) -> Unit, onPasswordChange: (String) -> Unit) {
-    var email: String by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
+fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
     val focusManager = LocalFocusManager.current
     var passwordVisibility: Boolean by remember { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
+
     OutlinedTextField(
-        value = email,
+        value = loginState.email ?: "",
         placeholder = {
             Text(
                 text = "user@email.com",
@@ -59,7 +58,7 @@ fun LoginFields(onEmailChange: (String) -> Unit, onPasswordChange: (String) -> U
                 textDecoration = TextDecoration.None
             )
         },
-        onValueChange = { email = it },
+        onValueChange = { viewModel.setEmail(it) },
         textStyle = Typography.bodyLarge.copy(textAlign = TextAlign.Start),
         leadingIcon = {
             Image(
@@ -87,7 +86,7 @@ fun LoginFields(onEmailChange: (String) -> Unit, onPasswordChange: (String) -> U
     )
 
     OutlinedTextField(
-        value = password,
+        value = loginState.password ?: "",
         placeholder = { Text(text = "Password", textAlign = TextAlign.Center) },
         label = {
             Text(
@@ -114,7 +113,9 @@ fun LoginFields(onEmailChange: (String) -> Unit, onPasswordChange: (String) -> U
                 )
             )
         },
-        onValueChange = { password = it },
+        onValueChange = {
+            viewModel.setPassword(it)
+        },
         textStyle = Typography.bodyLarge.copy(textAlign = TextAlign.Start),
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
@@ -139,7 +140,9 @@ fun LoginFields(onEmailChange: (String) -> Unit, onPasswordChange: (String) -> U
                 .clickable { }
         )
     }
-    GradientButton(buttonText = stringResource(R.string.log_in)) {
-
+    GradientButton(
+        buttonText = stringResource(R.string.log_in), height = Dimens.gradientButtonHeight
+    ) {
+        viewModel.login()
     }
 }

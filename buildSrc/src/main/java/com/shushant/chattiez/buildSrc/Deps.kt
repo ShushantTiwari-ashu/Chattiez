@@ -74,7 +74,8 @@ object Deps {
                 "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha04"
             const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
             const val activity = "androidx.activity:activity-compose:$activityVersion"
-            const val viewModels = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
+            const val viewModels = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+            const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha04"
             const val paging = "androidx.paging:paging-compose:1.0.0-alpha17"
 
 //            private const val lottieVersion = "4.2.0"
@@ -163,6 +164,7 @@ object Deps {
         const val coilCompose = "io.coil-kt:coil-compose:$coilVersion"
         const val balloon = "com.github.skydoves:balloon-compose:$version"
         const val lottie = "com.airbnb.android:lottie-compose:$lottieVersion"
+        const val sandwich = "com.github.skydoves:sandwich:1.3.3"
     }
 
 
@@ -200,12 +202,41 @@ object Deps {
 
     }
 
+    object Network {
+        private const val okHttp = "4.10.0"
+        private const val whatIfVersion = "1.1.1"
+        private const val retrofitVersion = "2.9.0"
+
+        const val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttp"
+        const val whatIf = "com.github.skydoves:whatif:$whatIfVersion"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    }
+
     object Modules {
         const val CommonResource = ":common-resource"
         const val CommonUiCompose = ":common-ui-compose"
         const val CoreData = ":core-data"
+        const val CoreNetwork = ":core-network"
         const val Navigation = ":navigation"
         const val FeatureSplash = ":feature-splash"
         const val FeatureAuth = ":feature-auth"
+    }
+
+    object Firebase {
+        const val googleService = "com.google.gms:google-services:4.3.13"
+        const val crashlyticsGradle = "com.google.firebase:firebase-crashlytics-gradle:2.9.2"
+        const val firebaseBom = "com.google.firebase:firebase-bom:31.1.1"
+        const val auth = "com.google.firebase:firebase-auth"
+        const val authKtx = "com.google.firebase:firebase-auth-ktx"
+        const val fireStore = "com.google.firebase:firebase-firestore"
+        const val analyticsKtx = "com.google.firebase:firebase-analytics-ktx"
+        const val fireStoreKtx = "com.google.firebase:firebase-firestore-ktx"
+        const val storageKtx = "com.google.firebase:firebase-storage-ktx"
+        const val inappmessaging = "com.google.firebase:firebase-inappmessaging-ktx"
+        const val crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+        const val databaseKtx = "com.google.firebase:firebase-database-ktx"
+        const val messagingKtx = "com.google.firebase:firebase-messaging-ktx"
+        const val serviceAuth = "com.google.android.gms:play-services-auth:20.4.0"
     }
 }

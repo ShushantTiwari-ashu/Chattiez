@@ -7,6 +7,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
     id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
@@ -36,9 +38,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            applicationIdSuffix ".debug"
         }
     }
     compileOptions {
@@ -115,6 +114,7 @@ dependencies {
     implementation project(Deps.Modules.Navigation)
     implementation project(Deps.Modules.FeatureSplash)
     implementation project(Deps.Modules.CoreData)
+    implementation project(Deps.Modules.CommonResource)
     implementation project(Deps.Modules.FeatureAuth)
 
     testImplementation(Deps.Utils.junit)

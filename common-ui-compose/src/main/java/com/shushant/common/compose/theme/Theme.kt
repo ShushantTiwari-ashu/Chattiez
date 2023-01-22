@@ -1,7 +1,9 @@
 package com.shushant.common.compose.theme
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
@@ -9,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shushant.common.compose.utils.*
+import com.shushant.resource.ChatIcons
 
 private val DarkChattiezColorScheme = darkColorScheme(
     primary = PURPLE700,
@@ -27,6 +30,10 @@ private val LightChattiezColorScheme = lightColorScheme(
     tertiary = WHITE200,
     onTertiary = GRAY200
 )
+
+val LocalSnackbarHostState =
+    compositionLocalOf<SnackbarHostState> { error("No SnackbarHostState provided") }
+
 
 /** Light Android background theme */
 private val LightAndroidBackgroundTheme = BackgroundTheme(color = LIGHT_COLOR)
@@ -107,6 +114,16 @@ val buttonColor: Color
         BUTTON_COLOR_PURPLE
     else
         WHITE200
+
+
+@get:DrawableRes
+val activatedDrawable: Int
+    @Composable
+    @ReadOnlyComposable
+    get() = if (isSystemInDarkTheme())
+        ChatIcons.ACTIVATED_NIGHT.drawable
+    else
+        ChatIcons.ACTIVATED.drawable
 
 
 /**
