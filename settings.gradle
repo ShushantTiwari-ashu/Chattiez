@@ -1,5 +1,6 @@
 rootProject.name = "Chattiez"
-include ':app'
+include ':chattiez'
+include ':astroyoga'
 include ':navigation'
 include ':common-ui-compose'
 include ':core-data'

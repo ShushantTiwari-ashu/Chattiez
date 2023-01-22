@@ -34,6 +34,10 @@ private val LightChattiezColorScheme = lightColorScheme(
 val LocalSnackbarHostState =
     compositionLocalOf<SnackbarHostState> { error("No SnackbarHostState provided") }
 
+val snackbarHostState
+    @Composable
+    get() = LocalSnackbarHostState.current
+
 
 /** Light Android background theme */
 private val LightAndroidBackgroundTheme = BackgroundTheme(color = LIGHT_COLOR)

@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.shushant.chatiez.feature.auth.R
 import com.shushant.chattiez.auth.common.BottomSection
-import com.shushant.common.compose.theme.LocalSnackbarHostState
 import com.shushant.common.compose.theme.Typography
+import com.shushant.common.compose.theme.snackbarHostState
 import com.shushant.common.compose.theme.textColor
 import com.shushant.common.compose.ui.ChattiezClickableText
 import com.shushant.common.compose.ui.DialogBoxLoading
@@ -36,7 +36,7 @@ fun LoginScreen(
 ) {
     val context = LocalContext.current
     val loginUiState by loginViewModel.state.collectAsStateWithLifecycle()
-    val snackbarHostState = LocalSnackbarHostState.current
+    val snackbarHostState = snackbarHostState
 
     LaunchedEffect(loginUiState.isLoggedIn) {
         if (loginUiState.isLoggedIn) {
@@ -50,7 +50,8 @@ fun LoginScreen(
 
     if (loginUiState.error != null) {
         LaunchedEffect(Unit) {
-            snackbarHostState.showSnackbar(
+           snackbarHostState.currentSnackbarData?.dismiss()
+           snackbarHostState.showSnackbar(
                 message = loginUiState.error ?: "",
                 duration = SnackbarDuration.Long
             )

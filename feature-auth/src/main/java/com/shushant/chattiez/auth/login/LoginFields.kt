@@ -44,6 +44,7 @@ fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
 
     OutlinedTextField(
         value = loginState.email ?: "",
+        isError = !(loginState.isValidEmail ?: true),
         placeholder = {
             Text(
                 text = "user@email.com",
@@ -59,6 +60,11 @@ fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
             )
         },
         onValueChange = { viewModel.setEmail(it) },
+        supportingText = {
+            if (loginState.isValidEmail == false) {
+                Text(text = "Incorrect email!", textAlign = TextAlign.Center)
+            }
+        },
         textStyle = Typography.bodyLarge.copy(textAlign = TextAlign.Start),
         leadingIcon = {
             Image(
@@ -88,6 +94,12 @@ fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
     OutlinedTextField(
         value = loginState.password ?: "",
         placeholder = { Text(text = "Password", textAlign = TextAlign.Center) },
+        isError = !(loginState.isValidPassword ?: true),
+        supportingText = {
+            if (loginState.isValidPassword == false) {
+                Text(text = "Incorrect password!", textAlign = TextAlign.Center)
+            }
+        },
         label = {
             Text(
                 text = "Password",
