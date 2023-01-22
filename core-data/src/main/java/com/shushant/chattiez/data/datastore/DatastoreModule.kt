@@ -14,10 +14,13 @@
 
 package com.shushant.chattiez.data.datastore
 
+import com.shushant.chattiez.data.utils.ConnectivityManagerNetworkMonitor
+import com.shushant.chattiez.data.utils.NetworkMonitor
 import org.koin.dsl.module
 
 
 val datastoreModule = module {
     single<PrefStorage> { AppPreferences(get()) }
-    single{ DatastoreUtils(get()) }
+    single { DatastoreUtils(get()) }
+    single<NetworkMonitor> { ConnectivityManagerNetworkMonitor(get()) }
 }

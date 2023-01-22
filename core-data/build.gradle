@@ -55,6 +55,7 @@ repositories {
 
 dependencies {
     api project(":common-ui-compose")
+    api project(":core-network")
 
     api Deps.Android.Room.paging
     api Deps.Kotlin.stdlib
@@ -62,5 +63,6 @@ dependencies {
     kapt Deps.Android.Room.compiler
     api Deps.Kotlin.serializationRuntime
     api Deps.Android.dataStore
+    api Deps.Utils.sandwich
     coreLibraryDesugaring Deps.Android.desugaring
 }

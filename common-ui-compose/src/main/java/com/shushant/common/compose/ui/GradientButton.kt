@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.shushant.common.compose.utils.brush
 import com.shushant.common.compose.theme.LIGHT_COLOR
@@ -23,7 +24,12 @@ import com.shushant.common.compose.theme.Typography
 import com.shushant.resource.ChatIcons
 
 @Composable
-fun GradientButton(buttonText: String, icon: ChatIcons? = null, onClick: () -> Unit) {
+fun GradientButton(
+    buttonText: String,
+    icon: ChatIcons? = null,
+    height: Dp? = null,
+    onClick: () -> Unit,
+) {
     val infiniteTransition = rememberInfiniteTransition()
 
     val offset by infiniteTransition.animateFloat(
@@ -41,7 +47,7 @@ fun GradientButton(buttonText: String, icon: ChatIcons? = null, onClick: () -> U
                 brush = offset.brush, shape = RoundedCornerShape(10.dp)
             )
             .fillMaxWidth()
-            .height(50.dp)
+            .then(height?.let { Modifier.height(it) } ?: Modifier.wrapContentHeight())
             .clickable { onClick.invoke() }
     ) {
         Row(
@@ -58,8 +64,8 @@ fun GradientButton(buttonText: String, icon: ChatIcons? = null, onClick: () -> U
                     contentScale = ContentScale.Fit,
                     colorFilter = ColorFilter.tint(color = LIGHT_COLOR)
                 )
+                Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.width(20.dp))
             Text(
                 text = buttonText,
                 style = Typography.bodyLarge,

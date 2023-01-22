@@ -72,6 +72,7 @@ dependencies {
     api Deps.Android.Compose.constraintLayout
     api Deps.Android.Compose.activity
     api Deps.Android.Compose.viewModels
+    api Deps.Android.Compose.lifecycleRuntime
     api Deps.Android.Compose.liveData
     api Deps.Android.Compose.paging
 
@@ -89,6 +90,7 @@ dependencies {
     api Deps.Utils.coil
     api Deps.Utils.coilCompose
     api Deps.Utils.coilSvg
+    api Deps.Utils.timber
     implementation 'androidx.browser:browser:1.4.0'
 
     coreLibraryDesugaring Deps.Android.desugaring

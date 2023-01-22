@@ -22,7 +22,7 @@ import com.shushant.resource.ChatIcons
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(composeNavigator: AppComposeNavigator) {
+fun SplashScreen(composeNavigator: AppComposeNavigator, isUserSignedOut: Boolean) {
     val scale = remember {
         Animatable(0f)
     }
@@ -41,7 +41,11 @@ fun SplashScreen(composeNavigator: AppComposeNavigator) {
 
         // Customize the delay time
         delay(2000L)
-        composeNavigator.navigate(ChattiezScreens.OnBoarding.route)
+        if (isUserSignedOut) {
+            composeNavigator.navigateAndClearBackStack(ChattiezScreens.OnBoarding.route)
+        } else {
+            composeNavigator.navigateAndClearBackStack(ChattiezScreens.Login.route)
+        }
     }
 
     Box(modifier = Modifier.fillMaxSize()) {

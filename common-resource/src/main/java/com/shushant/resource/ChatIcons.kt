@@ -21,5 +21,7 @@ enum class ChatIcons(@DrawableRes val drawable: Int) {
     PAGINATION_1(R.drawable.pagination_1),
     PAGINATION_2(R.drawable.pagination_2),
     GRADIENT_BG(R.drawable.gradient_text),
+    ACTIVATED(R.drawable.activated_day),
+    ACTIVATED_NIGHT(R.drawable.activated_night),
 }
 fun Boolean.getPasswordToggle() = if (this) ChatIcons.PASSWORD else ChatIcons.PASSWORD_TOGGLE

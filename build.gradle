@@ -11,6 +11,8 @@ buildscript {
         classpath Deps.Android.gradle
         classpath Deps.Kotlin.gradle
         classpath Deps.Kotlin.serialization
+        classpath Deps.Firebase.googleService
+        classpath Deps.Firebase.crashlyticsGradle
         classpath "com.github.ben-manes:gradle-versions-plugin:0.42.0"
     }
 }

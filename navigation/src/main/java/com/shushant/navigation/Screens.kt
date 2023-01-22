@@ -40,6 +40,12 @@ sealed class ChattiezScreens(
     // auth screen
     object Login : ChattiezScreens("login")
 
+    // sign up screen
+    object SignUp : ChattiezScreens("sign_up")
+
+    // activated screen
+    object AccountActivated : ChattiezScreens("activated")
+
     // message screen
     object Messages : ChattiezScreens(
         route = "messages",

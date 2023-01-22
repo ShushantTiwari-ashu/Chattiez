@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.auth.R
 import com.shushant.chattiez.auth.common.BottomSection
+import com.shushant.common.compose.theme.Dimens
 import com.shushant.common.compose.ui.ChattiezButton
 import com.shushant.common.compose.ui.GradientButton
 import com.shushant.navigation.AppComposeNavigator
@@ -49,7 +50,8 @@ fun AuthScreen(composeNavigator: AppComposeNavigator) {
 
             GradientButton(
                 buttonText = stringResource(id = R.string.login_with_google),
-                icon = ChatIcons.GOOGLE
+                icon = ChatIcons.GOOGLE,
+                height = Dimens.gradientButtonHeight
             ) {
                 composeNavigator.navigate(ChattiezScreens.Login.route)
             }

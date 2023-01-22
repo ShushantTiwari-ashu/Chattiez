@@ -10,14 +10,16 @@ import com.shushant.common.compose.ui.SignInOptions
 import com.shushant.common.compose.ui.TextWithDivider
 
 @Composable
-fun BottomSection() {
+fun BottomSection(googleSignIn: () -> Unit = {}) {
     TextWithDivider(text = stringResource(R.string.or))
     SignInOptions(
         modifier = Modifier.padding(top = 20.dp)
     ) {
         when (it) {
             SignInOptions.GITHUB -> {}
-            SignInOptions.GOOGLE -> {}
+            SignInOptions.GOOGLE -> {
+                googleSignIn.invoke()
+            }
             SignInOptions.FACEBOOK -> {}
         }
     }
