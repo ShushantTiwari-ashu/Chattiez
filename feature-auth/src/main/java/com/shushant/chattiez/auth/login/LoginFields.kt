@@ -31,7 +31,7 @@ import com.shushant.common.compose.theme.PRIMARY500
 import com.shushant.common.compose.theme.Typography
 import com.shushant.common.compose.theme.textColor
 import com.shushant.common.compose.ui.GradientButton
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 import com.shushant.resource.getPasswordToggle
 
 
@@ -43,7 +43,7 @@ fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     OutlinedTextField(
-        value = loginState.email ?: "",
+        value = loginState.email,
         isError = !(loginState.isValidEmail ?: true),
         placeholder = {
             Text(
@@ -68,7 +68,7 @@ fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
         textStyle = Typography.bodyLarge.copy(textAlign = TextAlign.Start),
         leadingIcon = {
             Image(
-                painter = painterResource(id = ChatIcons.EMAIL.drawable),
+                painter = painterResource(id = AppResource.EMAIL.drawable),
                 contentDescription = "Email", colorFilter = ColorFilter.tint(
                     textColor
                 )
@@ -92,7 +92,7 @@ fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
     )
 
     OutlinedTextField(
-        value = loginState.password ?: "",
+        value = loginState.password,
         placeholder = { Text(text = "Password", textAlign = TextAlign.Center) },
         isError = !(loginState.isValidPassword ?: true),
         supportingText = {
@@ -109,7 +109,7 @@ fun LoginFields(viewModel: LoginViewModel, loginState: LoginState) {
         },
         leadingIcon = {
             Image(
-                painter = painterResource(id = ChatIcons.PASSWORD.drawable),
+                painter = painterResource(id = AppResource.PASSWORD.drawable),
                 contentDescription = "Email", colorFilter = ColorFilter.tint(
                     textColor
                 )

@@ -19,13 +19,13 @@ import com.shushant.chatiez.feature.splash.R
 import com.shushant.common.compose.utils.brush
 import com.shushant.common.compose.theme.*
 import com.shushant.common.compose.ui.ComposeCircularProgressBar
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 
 @OptIn(ExperimentalTextApi::class)
 @Composable
 fun OnBoardingScreen(
-    bgImage: ChatIcons,
-    illustration: ChatIcons,
+    bgImage: AppResource,
+    illustration: AppResource,
     title: String,
     subtitle: String,
     value: Int,

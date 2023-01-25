@@ -13,8 +13,7 @@ import com.shushant.chattiez.R
 import com.shushant.chattiez.navigation.ChattiezNavHost
 import com.shushant.common.compose.theme.LocalSnackbarHostState
 import com.shushant.common.compose.ui.ChattiezBackground
-import com.shushant.common.compose.ui.ChattiezSnackBar
-import kotlinx.coroutines.launch
+import com.shushant.common.compose.ui.CommonSnackBar
 
 @OptIn(
     ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class
@@ -50,7 +49,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
             LocalSnackbarHostState provides snackbarHostState
         ) {
             Scaffold(snackbarHost = {
-                ChattiezSnackBar(snackbarHostState = snackbarHostState)
+                CommonSnackBar(snackbarHostState = snackbarHostState)
             },
                 contentWindowInsets = WindowInsets(0, 0, 0, 0),
                 contentColor = Color.Transparent,

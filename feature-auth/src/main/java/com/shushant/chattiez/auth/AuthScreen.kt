@@ -16,7 +16,7 @@ import com.shushant.common.compose.ui.ChattiezButton
 import com.shushant.common.compose.ui.GradientButton
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.navigation.ChattiezScreens
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 
 @Composable
 fun AuthScreen(composeNavigator: AppComposeNavigator) {
@@ -24,7 +24,7 @@ fun AuthScreen(composeNavigator: AppComposeNavigator) {
         modifier = Modifier.fillMaxSize()
     ) {
         Image(
-            painter = painterResource(id = ChatIcons.BG_ON_BOARDING1.drawable),
+            painter = painterResource(id = AppResource.BG_ON_BOARDING1.drawable),
             contentDescription = "",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -38,7 +38,7 @@ fun AuthScreen(composeNavigator: AppComposeNavigator) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = ChatIcons.ILLUSTRATION.drawable),
+                painter = painterResource(id = AppResource.ILLUSTRATION.drawable),
                 contentDescription = "",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -50,7 +50,7 @@ fun AuthScreen(composeNavigator: AppComposeNavigator) {
 
             GradientButton(
                 buttonText = stringResource(id = R.string.login_with_google),
-                icon = ChatIcons.GOOGLE,
+                icon = AppResource.GOOGLE,
                 height = Dimens.gradientButtonHeight
             ) {
                 composeNavigator.navigate(ChattiezScreens.Login.route)

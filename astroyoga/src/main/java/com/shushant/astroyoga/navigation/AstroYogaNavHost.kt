@@ -5,34 +5,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.shushant.chattiez.data.base.SnackBarState
 import com.shushant.astroyoga.ui.MainViewModel
-import com.shushant.navigation.ChattiezScreens
-import kotlin.reflect.KFunction1
+import com.shushant.navigation.AstroYogaScreens
 
 @Composable
-fun ChattiezNavHost(
+fun AstroYogaNavHost(
     navHostController: NavHostController,
     mainViewModel: MainViewModel,
     modifier: Modifier,
 ) {
     val composeNavigator = mainViewModel.navigator
     val authState by mainViewModel.getAuthState().collectAsState()
+    val splashUiState by mainViewModel.state.collectAsStateWithLifecycle()
     NavHost(
         navController = navHostController,
-        startDestination = ChattiezScreens.Splash.route,
+        startDestination = AstroYogaScreens.Splash.route,
         modifier = modifier.navigationBarsPadding()
     ) {
-        chattiezSplash(
+        astroSplash(
             composeNavigator = composeNavigator,
-            authState = authState
+            authState = authState,
+            splashUiState = splashUiState
         )
-        chattiezOnBoarding(
+        astroOnBoarding(
             composeNavigator = composeNavigator
         )
-        chattiezAuthFlow(
+        astroAuthFlow(
             composeNavigator = composeNavigator,
         )
     }

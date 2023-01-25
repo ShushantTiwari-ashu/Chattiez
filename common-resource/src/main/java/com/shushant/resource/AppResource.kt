@@ -2,12 +2,16 @@ package com.shushant.resource
 
 import androidx.annotation.DrawableRes
 
-enum class ChatIcons(@DrawableRes val drawable: Int) {
+enum class AppResource(@DrawableRes val drawable: Int) {
     LOGO(R.drawable.logo_mark),
+    ASTRO_LOGO(R.drawable.logo_astro_yoga),
     BG(R.drawable.bg_big),
+    ASTRO_BACKGROUND(R.drawable.astro_background),
     BG_ON_BOARDING1(R.drawable.bg_onboarding),
+    ASTRO_ON_BOARDING(R.drawable.onboarding),
     BG_SVG(R.drawable.bg),
     ILLUSTRATION(R.drawable.illustration),
+    ASTRO_ILLUSTRATION(R.drawable.astro_illustration),
     GOOGLE(R.drawable.google),
     APPLE(R.drawable.apple),
     GITHUB(R.drawable.github),
@@ -23,5 +27,8 @@ enum class ChatIcons(@DrawableRes val drawable: Int) {
     GRADIENT_BG(R.drawable.gradient_text),
     ACTIVATED(R.drawable.activated_day),
     ACTIVATED_NIGHT(R.drawable.activated_night),
+    TELL_YOUR_NAME(R.drawable.tell_your_name),
+    UNKNOWN(0)
 }
-fun Boolean.getPasswordToggle() = if (this) ChatIcons.PASSWORD else ChatIcons.PASSWORD_TOGGLE
+
+fun Boolean.getPasswordToggle() = if (this) AppResource.PASSWORD else AppResource.PASSWORD_TOGGLE

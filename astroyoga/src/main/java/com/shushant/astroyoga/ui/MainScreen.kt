@@ -10,10 +10,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.shushant.astroyoga.R
-import com.shushant.astroyoga.navigation.ChattiezNavHost
+import com.shushant.astroyoga.navigation.AstroYogaNavHost
 import com.shushant.common.compose.theme.LocalSnackbarHostState
 import com.shushant.common.compose.ui.ChattiezBackground
-import com.shushant.common.compose.ui.ChattiezSnackBar
+import com.shushant.common.compose.ui.CommonSnackBar
 
 @OptIn(
     ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class
@@ -49,13 +49,13 @@ fun MainScreen(mainViewModel: MainViewModel) {
             LocalSnackbarHostState provides snackbarHostState
         ) {
             Scaffold(snackbarHost = {
-                ChattiezSnackBar(snackbarHostState = snackbarHostState)
+                CommonSnackBar(snackbarHostState = snackbarHostState)
             },
                 contentWindowInsets = WindowInsets(0, 0, 0, 0),
                 contentColor = Color.Transparent,
                 containerColor = Color.Transparent,
                 bottomBar = {}) { padding ->
-                ChattiezNavHost(
+                AstroYogaNavHost(
                     navHostController = navHostController,
                     mainViewModel = mainViewModel,
                     modifier = Modifier

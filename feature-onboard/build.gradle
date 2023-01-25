@@ -86,6 +86,7 @@ dependencies {
 
     implementation project(Deps.Modules.Navigation)
     implementation project(Deps.Modules.CommonResource)
+    implementation project(Deps.Modules.CoreData)
 
     coreLibraryDesugaring Deps.Android.desugaring
 

@@ -12,11 +12,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.shushant.common.compose.theme.Typography
 import com.shushant.common.compose.theme.textColor
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 
 @Composable
 fun ChattiezToastDialog(
-    icon: ChatIcons,
+    icon: AppResource,
     message: String
 ) {
     FullScreenDialog {
