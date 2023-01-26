@@ -33,6 +33,9 @@ fun GetDetailsCarousel(
             onPageChange = {
                 viewModel.setSelectedIndex(it)
             },
+            onBack = {
+                composeNavigator.pop()
+            },
             pageSize = list.count(),
             selectedPage = selectedIndex,
             modifier = Modifier

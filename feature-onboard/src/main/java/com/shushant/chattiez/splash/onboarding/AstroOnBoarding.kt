@@ -9,10 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.shushant.chatiez.feature.splash.R
 import com.shushant.common.compose.theme.Typography
 import com.shushant.common.compose.ui.ChattiezButton
 import com.shushant.navigation.AppComposeNavigator
@@ -34,21 +36,21 @@ fun AstroOnBoarding(composeNavigator: AppComposeNavigator) {
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            "Do you want to know your future?",
+            text = stringResource(R.string.future),
             style = Typography.bodyLarge.copy(fontSize = 28.sp, fontWeight = FontWeight.W800),
             color = Color.Black,
             modifier = Modifier.padding(horizontal = 20.dp),
             textAlign = TextAlign.Center
         )
         Text(
-            "Start your week off on the right foot with your daily horoscope!",
+            text = stringResource(R.string.daily_horoscope),
             style = Typography.bodyLarge.copy(fontSize = 16.sp),
             color = Color.Gray,
             modifier = Modifier.padding(horizontal = 20.dp),
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(10.dp))
-        ChattiezButton(buttonText = "GET STARTED") {
+        ChattiezButton(buttonText = stringResource(R.string.get_started)) {
             composeNavigator.navigate(AstroYogaScreens.TakeUserDetails.route)
         }
     }

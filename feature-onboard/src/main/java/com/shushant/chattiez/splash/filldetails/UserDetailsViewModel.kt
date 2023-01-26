@@ -9,7 +9,7 @@ class UserDetailsViewModel : BaseViewModel<UserDetailsState>(UserDetailsState())
 
     val composableScreens = MutableStateFlow(emptyList<UserScreens>())
 
-    val selectedIndex = MutableStateFlow(1)
+    val selectedIndex = MutableStateFlow(0)
 
 
     fun setSelectedIndex(page: Int) {

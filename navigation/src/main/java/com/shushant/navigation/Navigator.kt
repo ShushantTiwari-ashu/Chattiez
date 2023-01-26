@@ -32,6 +32,9 @@ abstract class Navigator {
     fun navigateUp() {
         navigationCommands.tryEmit(NavigationCommand.NavigateUp)
     }
+    fun pop() {
+        navigationCommands.tryEmit(NavigationCommand.Pop)
+    }
 }
 
 abstract class AppComposeNavigator : Navigator() {
@@ -61,6 +64,7 @@ abstract class AppComposeNavigator : Navigator() {
             is ComposeNavigationCommand.NavigateUpWithResult<*> -> {
                 navUpWithResult(navigationCommand)
             }
+            NavigationCommand.Pop -> popBackStack()
         }
     }
 

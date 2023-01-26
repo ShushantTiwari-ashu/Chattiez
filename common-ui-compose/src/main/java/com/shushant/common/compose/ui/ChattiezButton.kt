@@ -15,15 +15,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.shushant.common.compose.theme.Typography
-import com.shushant.common.compose.theme.buttonColor
-import com.shushant.common.compose.theme.textColor
 
 @Composable
-fun ChattiezButton(color: Color = buttonColor, buttonText: String, onClickAction: () -> Unit) {
+fun ChattiezButton(buttonText: String, enabled: Boolean = true, onClickAction: () -> Unit) {
     TextButton(
         onClick = { onClickAction.invoke() },
+        enabled = enabled,
         shape = RoundedCornerShape(14.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Black,
+            disabledContainerColor = Color.LightGray.copy(alpha = 0.75f)
+        ),
         modifier = Modifier
             .fillMaxWidth()
             .height(50.dp)

@@ -27,7 +27,7 @@ enum class AppResource(@DrawableRes val drawable: Int) {
     GRADIENT_BG(R.drawable.gradient_text),
     ACTIVATED(R.drawable.activated_day),
     ACTIVATED_NIGHT(R.drawable.activated_night),
-    TELL_YOUR_NAME(R.drawable.tell_your_name),
+    TELL_YOUR_NAME(R.drawable.user_name),
     UNKNOWN(0)
 }
 

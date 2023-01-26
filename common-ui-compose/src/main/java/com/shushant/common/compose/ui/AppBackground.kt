@@ -1,7 +1,6 @@
 package com.shushant.common.compose.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.LocalAbsoluteTonalElevation
@@ -17,7 +16,7 @@ import com.shushant.common.compose.theme.LocalBackgroundTheme
 import com.shushant.resource.AppResource
 
 @Composable
-fun ChattiezBackground(
+fun AppBackground(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {

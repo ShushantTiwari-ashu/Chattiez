@@ -15,7 +15,7 @@ import com.shushant.common.compose.theme.LocalBackgroundTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ChattiezBottomSheet(
+fun AppBottomSheet(
     bottomSheetState: BottomSheetState = BottomSheetState.HalfExpanded,
     sheetContent: @Composable ColumnScope.() -> Unit,
     content: @Composable () -> Unit

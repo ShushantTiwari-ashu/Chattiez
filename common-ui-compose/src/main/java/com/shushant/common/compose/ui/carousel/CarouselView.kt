@@ -1,12 +1,18 @@
 package com.shushant.common.compose.ui.carousel
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -15,6 +21,7 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 
 const val protonCarouselView = "carouselView"
 
@@ -30,11 +37,13 @@ const val protonCarouselView = "carouselView"
 fun CarouselView(
     modifier: Modifier,
     onPageChange: (Int) -> Unit,
+    onBack: () -> Unit,
     pageSize: Int,
     selectedPage: Int?,
     content: @Composable (page: Int) -> Unit,
 ) {
     val pagerState = rememberPagerState(initialPage = selectedPage ?: 0)
+    val scope = rememberCoroutineScope()
     LaunchedEffect(key1 = pagerState) {
         // Collect from the pager state a snapshotFlow reading the currentPage
         snapshotFlow { pagerState.currentPage }.distinctUntilChanged().collect { page ->
@@ -51,6 +60,7 @@ fun CarouselView(
             ),
             modifier = modifier.semantics { this.contentDescription = protonCarouselView },
             state = pagerState,
+            userScrollEnabled = false
         ) { page ->
             content(page)
         }
@@ -59,7 +69,25 @@ fun CarouselView(
             pagerState = pagerState,
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .padding(16.dp),
+                .padding(18.dp),
+        )
+
+        Icon(
+            imageVector = Icons.Filled.ArrowBack,
+            contentDescription = "",
+            tint = Color.Black,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(top = 10.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
+                .clickable {
+                    scope.launch {
+                        if (pagerState.currentPage > 0) {
+                            pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                        } else {
+                            onBack.invoke()
+                        }
+                    }
+                },
         )
     }
 }

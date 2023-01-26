@@ -12,7 +12,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.shushant.astroyoga.R
 import com.shushant.astroyoga.navigation.AstroYogaNavHost
 import com.shushant.common.compose.theme.LocalSnackbarHostState
-import com.shushant.common.compose.ui.ChattiezBackground
+import com.shushant.common.compose.ui.AppBackground
 import com.shushant.common.compose.ui.CommonSnackBar
 
 @OptIn(
@@ -29,7 +29,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
     LaunchedEffect(Unit) {
         mainViewModel.navigator.handleNavigationCommands(navHostController)
     }
-    ChattiezBackground {
+    AppBackground {
         LaunchedEffect(snackBarState) {
             if (snackBarState) {
                 val result = snackbarHostState.showSnackbar(
