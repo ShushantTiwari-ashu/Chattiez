@@ -5,8 +5,8 @@ import com.shushant.chattiez.data.base.State
 
 data class UserDetailsState(
     val userName: String = "",
-    val gender: Gender = Gender.MALE,
-    val sentimentalStatus: SentimentalStatus = SentimentalStatus.SINGLE,
+    val gender: Gender = Gender.UNKNOWN,
+    val sentimentalStatus: SentimentalStatus = SentimentalStatus.UNKNOWN,
     val dob: String = "",
     val tob: String = "",
     val pob: String = "",
@@ -20,11 +20,21 @@ enum class SentimentalStatus {
     IN_RELATIONSHIP,
     MARRIED,
     DIVORCED,
-    WIDOWED
+    WIDOWED,
+    UNKNOWN
 }
 
 enum class Gender {
     MALE,
     FEMALE,
-    NON_BINARY
+    NON_BINARY,
+    UNKNOWN
 }
+
+val sentimentalStatus = mutableListOf<SentimentalStatus>(
+    SentimentalStatus.SINGLE,
+    SentimentalStatus.IN_RELATIONSHIP,
+    SentimentalStatus.MARRIED,
+    SentimentalStatus.DIVORCED,
+    SentimentalStatus.WIDOWED,
+)

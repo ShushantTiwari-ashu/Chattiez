@@ -5,11 +5,15 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.accompanist.pager.rememberPagerState
+import com.shushant.common.compose.ui.BackPressHandler
 import com.shushant.common.compose.ui.carousel.CarouselView
 import com.shushant.navigation.AppComposeNavigator
 import com.skydoves.whatif.whatIfNotNullOrEmpty
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -18,15 +22,21 @@ fun GetDetailsCarousel(
 ) {
     val selectedIndex by viewModel.selectedIndex.collectAsStateWithLifecycle()
     val composable by viewModel.composableScreens.collectAsStateWithLifecycle()
-    val userState by viewModel.state.collectAsStateWithLifecycle()
-    val list = mutableListOf<@Composable (() -> Unit)>().apply {
-        repeat(8) {
-            add { UserNameItem(viewModel::setUserName, userState) }
+    val pagerState = rememberPagerState(initialPage = selectedIndex)
+    val scope = rememberCoroutineScope()
+    getCarouselItems(viewModel = viewModel) {
+        scope.launch {
+            pagerState.animateScrollToPage(pagerState.currentPage + 1)
+        }
+    }.run {
+        LaunchedEffect(key1 = Unit) {
+            viewModel.addComposables(this@run)
         }
     }
-    LaunchedEffect(key1 = Unit) {
-        viewModel.addComposables(list)
-    }
+
+    BackPressHandler(
+        onBackPressed = { }
+    )
 
     composable.whatIfNotNullOrEmpty {
         CarouselView(
@@ -36,8 +46,9 @@ fun GetDetailsCarousel(
             onBack = {
                 composeNavigator.pop()
             },
-            pageSize = list.count(),
-            selectedPage = selectedIndex,
+            pageSize = it.count(),
+            pagerState = pagerState,
+            scope = scope,
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()

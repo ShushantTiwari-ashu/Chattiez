@@ -25,9 +25,9 @@ fun CommonSnackBar(snackbarHostState: SnackbarHostState) {
             actionContentColor = MaterialTheme.colorScheme.background
         ) {
             GradientButton(buttonText = it.visuals.message) {
-                if (snackbarHostState.currentSnackbarData?.visuals?.duration != SnackbarDuration.Indefinite) {
+                /*if (snackbarHostState.currentSnackbarData?.visuals?.duration != SnackbarDuration.Indefinite) {
                     snackbarHostState.currentSnackbarData?.dismiss()
-                }
+                }*/
             }
         }
     }
