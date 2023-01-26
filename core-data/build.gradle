@@ -22,6 +22,7 @@ plugins {
     id "kotlin-kapt"
     id "kotlin-parcelize"
     id "org.jetbrains.kotlin.plugin.serialization"
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -60,6 +61,7 @@ dependencies {
     api Deps.Android.Room.paging
     api Deps.Kotlin.stdlib
     api Deps.Koin.koinAndroid
+    implementation 'androidx.core:core-ktx:1.9.0'
     kapt Deps.Android.Room.compiler
     api Deps.Kotlin.serializationRuntime
     api Deps.Android.dataStore

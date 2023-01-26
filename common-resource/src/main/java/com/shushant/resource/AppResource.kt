@@ -28,6 +28,10 @@ enum class AppResource(@DrawableRes val drawable: Int) {
     ACTIVATED(R.drawable.activated_day),
     ACTIVATED_NIGHT(R.drawable.activated_night),
     TELL_YOUR_NAME(R.drawable.user_name),
+    GENDER(R.drawable.tell_gender),
+    SENTIMENTAL_STATUS(R.drawable.sentimental_status),
+    SELECT_DOB(R.drawable.select_dob),
+    SELECT_TOB(R.drawable.time_of_birth),
     UNKNOWN(0)
 }
 

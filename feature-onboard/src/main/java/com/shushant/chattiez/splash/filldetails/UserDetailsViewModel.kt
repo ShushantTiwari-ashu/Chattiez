@@ -16,6 +16,8 @@ class UserDetailsViewModel : BaseViewModel<UserDetailsState>(UserDetailsState())
         selectedIndex.update { page }
     }
 
+    fun moveForward() = selectedIndex.update { it + 1 }
+
     fun addComposables(action: List<@Composable (() -> Unit)>) {
         composableScreens.update {
             mutableListOf<UserScreens>().apply {

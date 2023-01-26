@@ -19,6 +19,7 @@ plugins {
     id "com.android.library"
     id "kotlin-android"
     id "kotlin-kapt"
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -83,6 +84,7 @@ dependencies {
     api Deps.Android.Accompanist.navigationMaterial
     api Deps.Android.Accompanist.navigationFlowlayout
     api Deps.Android.Accompanist.navigationAnimation
+    implementation 'androidx.core:core-ktx:1.9.0'
 
     coreLibraryDesugaring Deps.Android.desugaring
 

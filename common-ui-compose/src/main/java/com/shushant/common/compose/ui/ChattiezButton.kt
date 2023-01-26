@@ -17,7 +17,12 @@ import androidx.compose.ui.unit.sp
 import com.shushant.common.compose.theme.Typography
 
 @Composable
-fun ChattiezButton(buttonText: String, enabled: Boolean = true, onClickAction: () -> Unit) {
+fun ChattiezButton(
+    modifier: Modifier = Modifier,
+    buttonText: String,
+    enabled: Boolean = true,
+    onClickAction: () -> Unit
+) {
     TextButton(
         onClick = { onClickAction.invoke() },
         enabled = enabled,
@@ -26,7 +31,7 @@ fun ChattiezButton(buttonText: String, enabled: Boolean = true, onClickAction: (
             containerColor = Color.Black,
             disabledContainerColor = Color.LightGray.copy(alpha = 0.75f)
         ),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(50.dp)
             .padding(horizontal = 20.dp)

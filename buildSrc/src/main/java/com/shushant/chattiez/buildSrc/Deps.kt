@@ -165,6 +165,7 @@ object Deps {
         const val balloon = "com.github.skydoves:balloon-compose:$version"
         const val lottie = "com.airbnb.android:lottie-compose:$lottieVersion"
         const val sandwich = "com.github.skydoves:sandwich:1.3.3"
+        const val wheelPicker = "com.github.commandiron:WheelPickerCompose:1.1.9"
     }
 
 

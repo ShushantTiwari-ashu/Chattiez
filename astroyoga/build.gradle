@@ -10,6 +10,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -70,6 +71,8 @@ repositories {
 
 dependencies {
     implementation Deps.Kotlin.coroutinesAndroid
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     kapt Deps.Android.Lifecycle.compiler
 
     // koin

@@ -18,7 +18,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
+import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
@@ -39,11 +41,10 @@ fun CarouselView(
     onPageChange: (Int) -> Unit,
     onBack: () -> Unit,
     pageSize: Int,
-    selectedPage: Int?,
+    pagerState: PagerState,
+    scope: CoroutineScope,
     content: @Composable (page: Int) -> Unit,
 ) {
-    val pagerState = rememberPagerState(initialPage = selectedPage ?: 0)
-    val scope = rememberCoroutineScope()
     LaunchedEffect(key1 = pagerState) {
         // Collect from the pager state a snapshotFlow reading the currentPage
         snapshotFlow { pagerState.currentPage }.distinctUntilChanged().collect { page ->

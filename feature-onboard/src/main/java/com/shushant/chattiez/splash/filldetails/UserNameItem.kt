@@ -2,6 +2,7 @@ package com.shushant.chattiez.splash.filldetails
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -12,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,7 +23,7 @@ import com.shushant.common.compose.ui.ChattiezButton
 import com.shushant.resource.AppResource
 
 @Composable
-fun UserNameItem(userName: (String) -> Unit, userState: UserDetailsState) {
+fun UserNameItem(userName: (String) -> Unit, userState: UserDetailsState, moveForward: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -56,6 +58,7 @@ fun UserNameItem(userName: (String) -> Unit, userState: UserDetailsState) {
             value = userState.userName,
             onValueChange = { userName.invoke(it) },
             textStyle = Typography.bodyLarge.copy(fontSize = 28.sp, color = Color.Black),
+            keyboardOptions = KeyboardOptions(KeyboardCapitalization.Words),
             placeholder = {
                 Text(
                     text = "Type Your Name",
@@ -76,8 +79,11 @@ fun UserNameItem(userName: (String) -> Unit, userState: UserDetailsState) {
             singleLine = true
         )
         Spacer(modifier = Modifier.height(40.dp))
-        ChattiezButton(buttonText = stringResource(R.string.continue_text), enabled = false) {
-
+        ChattiezButton(
+            buttonText = stringResource(R.string.continue_text),
+            enabled = userState.userName.isNotEmpty()
+        ) {
+            moveForward.invoke()
         }
     }
 }
