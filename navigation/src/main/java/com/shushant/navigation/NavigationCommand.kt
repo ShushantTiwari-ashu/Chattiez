@@ -4,6 +4,7 @@ import androidx.navigation.NavOptions
 
 sealed class NavigationCommand {
     object NavigateUp : NavigationCommand()
+    object Pop : NavigationCommand()
 }
 
 sealed class ComposeNavigationCommand : NavigationCommand() {

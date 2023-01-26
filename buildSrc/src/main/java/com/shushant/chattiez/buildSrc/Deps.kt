@@ -15,11 +15,9 @@
 package com.shushant.chattiez.buildSrc
 
 object Deps {
-    object Gradle {
-    }
 
     object Kotlin {
-        private const val version = "1.7.20"
+        private const val version = "1.8.0"
 
         const val gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
@@ -51,10 +49,11 @@ object Deps {
         const val navigationHiltCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
 
         const val dataStore = "androidx.datastore:datastore-preferences:1.0.0"
+        const val splashScreen = "androidx.core:core-splashscreen:1.0.0"
 
         object Compose {
             const val version = "1.4.0-alpha01"
-            const val compilerVersion = "1.3.2"
+            const val compilerVersion = "1.4.0"
             const val composeMaterialVersion = "1.0.1"
             const val composeRuntimeVersion = "1.3.3"
 
@@ -75,7 +74,8 @@ object Deps {
             const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
             const val activity = "androidx.activity:activity-compose:$activityVersion"
             const val viewModels = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
-            const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha04"
+            const val lifecycleRuntime =
+                "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha04"
             const val paging = "androidx.paging:paging-compose:1.0.0-alpha17"
 
 //            private const val lottieVersion = "4.2.0"
@@ -219,7 +219,7 @@ object Deps {
         const val CoreData = ":core-data"
         const val CoreNetwork = ":core-network"
         const val Navigation = ":navigation"
-        const val FeatureSplash = ":feature-splash"
+        const val FeatureOnBoard = ":feature-onboard"
         const val FeatureAuth = ":feature-auth"
     }
 

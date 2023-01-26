@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_subtitle">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</string>
+    <string name="onboarding_title">Share your thought</string>
+    <string name="skip">Skip</string>
+    <string name="stay_connected">Stay connected</string>
+    <string name="subtitle2">Prophetic dreams are higher messages, sent by higher messengers, for higher purposes.</string>
+    <string name="daily_horoscope">Start your week off on the right foot with your daily horoscope!</string>
+    <string name="future">Do you want to know your future?</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="continue_text">CONTINUE</string>
+</resources>

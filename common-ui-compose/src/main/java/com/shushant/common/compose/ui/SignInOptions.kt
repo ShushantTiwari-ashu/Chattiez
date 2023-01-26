@@ -17,7 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.shushant.common.compose.theme.buttonColor
 import com.shushant.common.compose.theme.textColor
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 
 @Composable
 fun SignInOptions(
@@ -53,6 +53,6 @@ fun SignInOptions(
     }
 }
 
-enum class SignInOptions(val icons: ChatIcons) {
-    GOOGLE(ChatIcons.GOOGLE), FACEBOOK(ChatIcons.FACEBOOK), GITHUB(ChatIcons.GITHUB)
+enum class SignInOptions(val icons: AppResource) {
+    GOOGLE(AppResource.GOOGLE), FACEBOOK(AppResource.FACEBOOK), GITHUB(AppResource.GITHUB)
 }

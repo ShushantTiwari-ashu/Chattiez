@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shushant.common.compose.utils.*
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 
 private val DarkChattiezColorScheme = darkColorScheme(
     primary = PURPLE700,
@@ -41,17 +41,73 @@ val snackbarHostState
 
 /** Light Android background theme */
 private val LightAndroidBackgroundTheme = BackgroundTheme(color = LIGHT_COLOR)
+private val LightAstroBackgroundTheme = BackgroundTheme(color = LIGHT_COLOR_ASTRO)
 
 /** Dark Android background theme */
 private val DarkAndroidBackgroundTheme = BackgroundTheme(color = DARK_PURPLE300)
+private val DarkAstroBackgroundTheme = BackgroundTheme(color = LIGHT_COLOR_ASTRO)
+
 
 @Composable
-fun ChattiezTheme(
+fun AstroYogaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (darkTheme) DarkChattiezColorScheme else LightChattiezColorScheme
-    val backgroundTheme = if (darkTheme) DarkAndroidBackgroundTheme else LightAndroidBackgroundTheme
+    val backgroundTheme =
+        if (darkTheme) {
+            DarkAstroBackgroundTheme
+        } else {
+            LightAstroBackgroundTheme
+        }
+    val systemUiController = rememberSystemUiController()
+    val configuration = LocalConfiguration.current
+    val dimensions = when {
+        configuration.screenWidthDp <= 320 -> sw320
+        configuration.screenWidthDp <= 480 -> sw480
+        configuration.screenWidthDp <= 600 -> sw600
+        else -> sw720
+    }
+
+    SideEffect {
+        // Changing status bar icons as user pref
+        systemUiController.setStatusBarColor(
+            color = Color.Transparent,
+            darkIcons = !darkTheme
+        )
+
+        // Changing navigation bar icons as user pref
+        systemUiController.setNavigationBarColor(
+            color = Color.Transparent,
+            darkIcons = !darkTheme
+        )
+    }
+
+    CompositionLocalProvider(
+        LocalBackgroundTheme provides backgroundTheme
+    ) {
+        ProvideDimens(dimens = dimensions) {
+            MaterialTheme(
+                colorScheme = colorScheme,
+                typography = Typography,
+                content = content
+            )
+        }
+    }
+}
+
+@Composable
+fun AppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colorScheme = if (darkTheme) DarkChattiezColorScheme else LightChattiezColorScheme
+    val backgroundTheme =
+        if (darkTheme) {
+            DarkAndroidBackgroundTheme
+        } else {
+            LightAndroidBackgroundTheme
+        }
     val systemUiController = rememberSystemUiController()
     val configuration = LocalConfiguration.current
     val dimensions = when {
@@ -125,9 +181,9 @@ val activatedDrawable: Int
     @Composable
     @ReadOnlyComposable
     get() = if (isSystemInDarkTheme())
-        ChatIcons.ACTIVATED_NIGHT.drawable
+        AppResource.ACTIVATED_NIGHT.drawable
     else
-        ChatIcons.ACTIVATED.drawable
+        AppResource.ACTIVATED.drawable
 
 
 /**

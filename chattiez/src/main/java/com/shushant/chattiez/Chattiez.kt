@@ -22,7 +22,7 @@ class Chattiez : Application() {
             androidLogger()
             androidContext(this@Chattiez)
             modules(
-                navigationModule, appModule, datastoreModule, dataModule, firebaseModule
+                navigationModule, appModule, datastoreModule, dataModule, firebaseModule,
             )
         }
     }

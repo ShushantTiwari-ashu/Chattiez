@@ -9,7 +9,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    viewModel { MainViewModel(get(), get(), get(), get(),get()) }
+    viewModel { MainViewModel(get(), get(), get(), get()) }
     single(createdAtStart = true) { ActivityProvider(get()) }
     single<AppCoroutineDispatchers> { DefaultAppCoroutineDispatchers() }
     single { ResourceProvider(get()) }

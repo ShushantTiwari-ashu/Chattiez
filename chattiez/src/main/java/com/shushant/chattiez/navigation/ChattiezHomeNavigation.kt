@@ -9,6 +9,7 @@ import com.shushant.chattiez.auth.signup.SignUpScreen
 import com.shushant.chattiez.data.base.SnackBarState
 import com.shushant.chattiez.splash.ui.SplashScreen
 import com.shushant.chattiez.splash.boarding.OnBoarding
+import com.shushant.chattiez.splash.ui.SplashUiState
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.navigation.ChattiezScreens
 
@@ -17,7 +18,7 @@ fun NavGraphBuilder.chattiezSplash(
     authState: Boolean
 ) {
     composable(route = ChattiezScreens.Splash.name) {
-        SplashScreen(composeNavigator = composeNavigator, isUserSignedOut = authState)
+        SplashScreen(composeNavigator = composeNavigator, isUserSignedOut = authState, splashUiState = SplashUiState())
     }
 }
 

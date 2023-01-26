@@ -1,15 +1,14 @@
 package com.shushant.chattiez.ui
 
-import androidx.compose.material3.SnackbarDuration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shushant.chattiez.R
-import com.shushant.chattiez.data.base.SnackBarState
+import com.shushant.chattiez.data.base.BaseViewModel
 import com.shushant.chattiez.data.datastore.PrefStorage
 import com.shushant.chattiez.data.utils.NetworkMonitor
 import com.shushant.chattiez.network.client.AccountService
+import com.shushant.chattiez.splash.ui.SplashUiState
 import com.shushant.navigation.AppComposeNavigator
-import com.shushant.resource.ResourceProvider
+import com.shushant.resource.AppResource
 import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
@@ -19,9 +18,16 @@ class MainViewModel(
     appComposeNavigator: AppComposeNavigator,
     private val preferences: PrefStorage,
     private val accountService: AccountService,
-    networkMonitor: NetworkMonitor,
-    private val resourceProvider: ResourceProvider
-) : ViewModel(), DisposableHandle {
+    networkMonitor: NetworkMonitor
+) : BaseViewModel<SplashUiState>(SplashUiState()), DisposableHandle {
+
+    init {
+        setSplashState()
+    }
+
+    private fun setSplashState() {
+        setState { state -> state.copy(background = AppResource.BG, logo = AppResource.LOGO) }
+    }
 
     val navigator: AppComposeNavigator = appComposeNavigator
 

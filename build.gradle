@@ -13,7 +13,7 @@ buildscript {
         classpath Deps.Kotlin.serialization
         classpath Deps.Firebase.googleService
         classpath Deps.Firebase.crashlyticsGradle
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.42.0"
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.44.0"
     }
 }
 
@@ -30,11 +30,11 @@ allprojects {
         kotlinOptions {
             jvmTarget = "1.8"
 
-            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
-            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
-            freeCompilerArgs += "-Xopt-in=kotlin.Experimental"
-            freeCompilerArgs += "-Xopt-in=coil.annotation.ExperimentalCoilApi"
-            freeCompilerArgs += "-Xopt-in=com.google.accompanist.pager.ExperimentalPagerApi"
+            freeCompilerArgs += "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            freeCompilerArgs += "-opt-in=kotlinx.coroutines.FlowPreview"
+            freeCompilerArgs += "-opt-in=kotlin.Experimental"
+            freeCompilerArgs += "-opt-in=coil.annotation.ExperimentalCoilApi"
+            freeCompilerArgs += "-opt-in=com.google.accompanist.pager.ExperimentalPagerApi"
         }
     }
 }

@@ -21,12 +21,12 @@ import androidx.compose.ui.unit.dp
 import com.shushant.common.compose.utils.brush
 import com.shushant.common.compose.theme.LIGHT_COLOR
 import com.shushant.common.compose.theme.Typography
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 
 @Composable
 fun GradientButton(
     buttonText: String,
-    icon: ChatIcons? = null,
+    icon: AppResource? = null,
     height: Dp? = null,
     onClick: () -> Unit,
 ) {

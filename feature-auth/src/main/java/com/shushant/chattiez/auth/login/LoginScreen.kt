@@ -26,7 +26,7 @@ import com.shushant.common.compose.ui.DialogBoxLoading
 import com.shushant.common.compose.utils.toast
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.navigation.ChattiezScreens
-import com.shushant.resource.ChatIcons
+import com.shushant.resource.AppResource
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -69,7 +69,7 @@ fun LoginScreen(
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Image(
-            painter = painterResource(id = ChatIcons.LOGO.drawable),
+            painter = painterResource(id = AppResource.LOGO.drawable),
             contentDescription = stringResource(
                 R.string.logo
             ),
