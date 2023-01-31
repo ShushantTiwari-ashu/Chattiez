@@ -1,6 +1,6 @@
-package com.shushant.chattiez.auth.di
+package com.shushant.astroyoga.auth.di
 
-import com.shushant.chattiez.auth.login.LoginViewModel
+import com.shushant.astroyoga.auth.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

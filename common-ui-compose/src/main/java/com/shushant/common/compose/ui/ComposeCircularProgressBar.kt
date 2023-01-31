@@ -61,7 +61,13 @@ fun ComposeCircularProgressBar(
 
         Canvas(
             modifier = Modifier
-                .size(size).shadow(1.dp, shape = CircleShape, ambientColor = Color.Transparent, spotColor = Color.Transparent)
+                .size(size)
+                .shadow(
+                    1.dp,
+                    shape = CircleShape,
+                    ambientColor = Color.Transparent,
+                    spotColor = Color.Transparent
+                )
         ) {
             // For shadow
             drawCircle(

@@ -11,8 +11,8 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  */
-import com.shushant.chattiez.buildSrc.App
-import com.shushant.chattiez.buildSrc.Deps
+import com.shushant.astroyoga.buildSrc.App
+import com.shushant.astroyoga.buildSrc.Deps
 
 plugins {
     id "com.android.library"
@@ -43,9 +43,10 @@ android {
             resValue("string", "google_client_id", localProperties['GOOGLE_CLIENT_ID'])
             resValue("string", "open_ai_key", localProperties['OPENAI_API_KEY'])
             resValue("string", "base_url_ai", localProperties['OPEN_AI_BASE_URL'])
+            resValue("string", "maps_api_key", localProperties['MAPS_API_KEY'])
         }
     }
-    namespace 'com.shushant.chattiez.network'
+    namespace 'com.shushant.astroyoga.network'
 }
 
 repositories {
@@ -61,6 +62,7 @@ dependencies {
     api Deps.Network.retrofit
     api Deps.Network.okhttpInterceptor
     api Deps.Utils.sandwich
+    api Deps.Utils.timber
     coreLibraryDesugaring Deps.Android.desugaring
     api platform(Deps.Firebase.firebaseBom)
     api Deps.Firebase.auth
@@ -74,4 +76,13 @@ dependencies {
     api Deps.Firebase.databaseKtx
     api Deps.Firebase.messagingKtx
     api Deps.Firebase.serviceAuth
+
+    def ktor_version = '2.2.2'
+    api "io.ktor:ktor-client-core:$ktor_version"
+
+    api "io.ktor:ktor-client-android:$ktor_version"
+    api "io.ktor:ktor-client-serialization:$ktor_version"
+    api "io.ktor:ktor-client-content-negotiation:$ktor_version"
+    api "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    api "io.ktor:ktor-client-logging:$ktor_version"
 }

@@ -1,4 +1,4 @@
-import com.shushant.chattiez.buildSrc.Deps
+import com.shushant.astroyoga.buildSrc.Deps
 
 buildscript {
     ext {

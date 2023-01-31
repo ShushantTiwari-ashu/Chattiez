@@ -2,30 +2,32 @@ package com.shushant.common.compose.ui.carousel
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
+import com.shushant.common.compose.theme.Typography
+import com.shushant.astroyoga.common.compose.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
-const val protonCarouselView = "carouselView"
+const val carouselView = "carouselView"
 
 /**
  * A layout composable that has [HorizontalPager] with carousel animation
@@ -42,6 +44,7 @@ fun CarouselView(
     onBack: () -> Unit,
     pageSize: Int,
     pagerState: PagerState,
+    showText: Boolean = false,
     scope: CoroutineScope,
     content: @Composable (page: Int) -> Unit,
 ) {
@@ -59,7 +62,7 @@ fun CarouselView(
             contentPadding = PaddingValues(
                 horizontal = 0.dp, vertical = 0.dp,
             ),
-            modifier = modifier.semantics { this.contentDescription = protonCarouselView },
+            modifier = modifier.semantics { this.contentDescription = carouselView },
             state = pagerState,
             userScrollEnabled = false
         ) { page ->
@@ -90,5 +93,18 @@ fun CarouselView(
                     }
                 },
         )
+
+        if (showText) {
+            Text(
+                text = stringResource(R.string.dont_have_hand),
+                style = Typography.bodyLarge.copy(color = Color.Black, fontSize = 10.sp),
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(top = 14.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
+                    .clickable {
+
+                    }
+            )
+        }
     }
 }

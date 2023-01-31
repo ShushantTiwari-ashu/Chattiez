@@ -29,8 +29,8 @@
     </style>
 
     <style name="Theme.AstroYoga.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
         <item name="windowSplashScreenBackground">@color/purple_700</item>
-        <item name="splashScreenIconSize">330dp</item>
         <item name="postSplashScreenTheme">@style/Theme.AstroYoga</item>
     </style>
 

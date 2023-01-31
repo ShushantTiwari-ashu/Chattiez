@@ -1,19 +1,18 @@
 package com.shushant.astroyoga.ui
 
 import androidx.lifecycle.viewModelScope
-import com.shushant.chattiez.data.base.BaseViewModel
-import com.shushant.chattiez.data.datastore.PrefStorage
-import com.shushant.chattiez.data.utils.NetworkMonitor
-import com.shushant.chattiez.network.client.AccountService
-import com.shushant.chattiez.splash.ui.SplashUiState
+import com.shushant.astroyoga.data.base.BaseViewModel
+import com.shushant.astroyoga.data.datastore.PrefStorage
+import com.shushant.astroyoga.data.utils.NetworkMonitor
+import com.shushant.astroyoga.network.client.AccountService
+import com.shushant.astroyoga.onboard.ui.SplashUiState
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.resource.AppResource
 import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainViewModel(
     appComposeNavigator: AppComposeNavigator,
@@ -26,7 +25,16 @@ class MainViewModel(
     }
 
     private fun setSplashState() {
-        setState { state -> state.copy(background = AppResource.ASTRO_BACKGROUND, logo = AppResource.ASTRO_LOGO) }
+        runBlocking {
+            val hasUserData = preferences.getUserState.first().isNotEmpty()
+            setState { state ->
+                state.copy(
+                    background = AppResource.ASTRO_BACKGROUND,
+                    logo = AppResource.ASTRO_LOGO,
+                    hasUserData = hasUserData
+                )
+            }
+        }
     }
 
     val navigator: AppComposeNavigator = appComposeNavigator
@@ -53,6 +61,10 @@ class MainViewModel(
             preferences.setCurrentTheme(isDark)
         }
     }
+
+    val showBottomBar: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    fun updateBottomBarState(show: Boolean) = showBottomBar.updateAndGet { show }
 
 
     fun isDarkTheme() = preferences.getThemeState

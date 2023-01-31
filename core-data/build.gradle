@@ -13,8 +13,8 @@
  */
 
 
-import com.shushant.chattiez.buildSrc.App
-import com.shushant.chattiez.buildSrc.Deps
+import com.shushant.astroyoga.buildSrc.App
+import com.shushant.astroyoga.buildSrc.Deps
 
 plugins {
     id "com.android.library"
@@ -46,7 +46,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.shushant.chattiez.coreData'
+    namespace 'com.shushant.astroyoga.coreData'
 }
 
 repositories {

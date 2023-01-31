@@ -1,6 +1,6 @@
-package com.shushant.chattiez.auth.login
+package com.shushant.astroyoga.auth.login
 
-import com.shushant.chattiez.data.base.State
+import com.shushant.astroyoga.data.base.State
 
 data class LoginState(
     val isLoading: Boolean = false,

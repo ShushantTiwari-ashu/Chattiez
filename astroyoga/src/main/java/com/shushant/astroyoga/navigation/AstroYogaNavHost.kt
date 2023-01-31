@@ -2,39 +2,34 @@ package com.shushant.astroyoga.navigation
 
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.shushant.astroyoga.ui.MainViewModel
-import com.shushant.navigation.AstroYogaScreens
+import com.shushant.astroyoga.data.datastore.PrefStorage
+import com.shushant.navigation.AppComposeNavigator
+import com.shushant.navigation.Graph
 
 @Composable
 fun AstroYogaNavHost(
-    navHostController: NavHostController,
-    mainViewModel: MainViewModel,
     modifier: Modifier,
+    composeNavigator: AppComposeNavigator,
+    navHostController: NavHostController,
+    preferences: PrefStorage,
 ) {
-    val composeNavigator = mainViewModel.navigator
-    val authState by mainViewModel.getAuthState().collectAsState()
-    val splashUiState by mainViewModel.state.collectAsStateWithLifecycle()
+
     NavHost(
         navController = navHostController,
-        startDestination = AstroYogaScreens.Splash.route,
+        route = Graph.ROOT,
+        startDestination = Graph.SPLASH,
         modifier = modifier.navigationBarsPadding()
     ) {
-        astroSplash(
+        splashGraph(
             composeNavigator = composeNavigator,
-            authState = authState,
-            splashUiState = splashUiState
+            preferences = preferences,
         )
-        astroOnBoarding(
+        onBoardingGraph(
             composeNavigator = composeNavigator
         )
-        astroAuthFlow(
-            composeNavigator = composeNavigator,
-        )
+        homeGraph(composeNavigator = composeNavigator)
     }
 }

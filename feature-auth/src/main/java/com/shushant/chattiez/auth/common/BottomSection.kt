@@ -1,4 +1,4 @@
-package com.shushant.chattiez.auth.common
+package com.shushant.astroyoga.auth.common
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
