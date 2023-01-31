@@ -234,8 +234,9 @@ object Deps {
         const val Navigation = ":navigation"
         const val FeatureOnBoard = ":feature:onboard"
         const val FeatureAuth = ":feature-auth"
-        const val FeatureMain = ":feature:main"
+        const val FeatureCompatibility = ":feature:compatibility"
         const val FeatureHoroscope = ":feature:horoscope"
+        const val FeatureProfile = ":feature:profile"
     }
 
     object Firebase {

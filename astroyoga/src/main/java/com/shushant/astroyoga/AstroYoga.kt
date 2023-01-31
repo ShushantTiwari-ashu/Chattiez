@@ -7,7 +7,7 @@ import coil.decode.SvgDecoder
 import com.shushant.astroyoga.di.appModule
 import com.shushant.astroyoga.operator.GlobalResponseOperator
 import com.shushant.astroyoga.data.datastore.datastoreModule
-import com.shushant.astroyoga.main.di.mainModule
+import com.shushant.astroyoga.compatibility.di.mainModule
 import com.shushant.astroyoga.network.di.firebaseModule
 import com.shushant.astroyoga.onboard.di.onBoardingModule
 import com.shushant.navigation.di.navigationModule

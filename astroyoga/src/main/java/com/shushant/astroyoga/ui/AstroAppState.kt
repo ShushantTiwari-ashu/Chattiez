@@ -8,13 +8,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.util.trace
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navOptions
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.shushant.astroyoga.compatibility.navigation.toCompatibilityScreen
+import com.shushant.astroyoga.compatibility.navigation.toProfileScreen
 import com.shushant.astroyoga.data.datastore.PrefStorage
 import com.shushant.astroyoga.data.utils.NetworkMonitor
+import com.shushant.astroyoga.horoscope.navigation.toHoroScope
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.navigation.destinations.BottomNavItem
 import kotlinx.coroutines.CoroutineScope
@@ -88,14 +92,14 @@ class AstroAppState(
             }
 
             when (topLevelDestination) {
-                BottomNavItem.Horoscope -> navController.navigate(
-                    topLevelDestination.screen_route, topLevelNavOptions
+                BottomNavItem.Horoscope -> navController.toHoroScope(
+                    topLevelNavOptions
                 )
-                BottomNavItem.Compatibility -> navController.navigate(
-                    topLevelDestination.screen_route, topLevelNavOptions
+                BottomNavItem.Compatibility -> navController.toCompatibilityScreen(
+                    topLevelNavOptions
                 )
-                BottomNavItem.Profile -> navController.navigate(
-                    topLevelDestination.screen_route, topLevelNavOptions
+                BottomNavItem.Profile -> navController.toProfileScreen(
+                    topLevelNavOptions
                 )
             }
         }

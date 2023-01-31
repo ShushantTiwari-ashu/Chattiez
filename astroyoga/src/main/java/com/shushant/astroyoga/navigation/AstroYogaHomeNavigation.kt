@@ -2,14 +2,16 @@ package com.shushant.astroyoga.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.navigation
+import com.shushant.astroyoga.compatibility.navigation.compatibilityScreen
+import com.shushant.astroyoga.compatibility.navigation.profileScreen
 import com.shushant.astroyoga.data.datastore.PrefStorage
-import com.shushant.navigation.destinations.BottomNavItem
-import com.shushant.astroyoga.main.graph.homeInternalGraph
+import com.shushant.astroyoga.horoscope.navigation.horoscopeScreen
 import com.shushant.astroyoga.onboard.navigation.OnBoarding
 import com.shushant.astroyoga.onboard.navigation.astroOnBoarding
 import com.shushant.astroyoga.onboard.navigation.astroSplash
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.navigation.Graph
+import com.shushant.navigation.destinations.BottomNavItem
 
 
 fun NavGraphBuilder.onBoardingGraph(
@@ -46,7 +48,9 @@ fun NavGraphBuilder.homeGraph(
         route = Graph.HOME,
         startDestination = BottomNavItem.Horoscope.screen_route
     ) {
-        homeInternalGraph(composeNavigator = composeNavigator)
+        horoscopeScreen(composeNavigator)
+        compatibilityScreen(composeNavigator)
+        profileScreen(composeNavigator)
     }
 }
 
