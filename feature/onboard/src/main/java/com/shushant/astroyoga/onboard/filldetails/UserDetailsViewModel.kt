@@ -4,7 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewModelScope
 import com.shushant.astroyoga.data.base.BaseViewModel
 import com.shushant.astroyoga.data.datastore.PrefStorage
+import com.shushant.astroyoga.data.model.CreateUserRequest
 import com.shushant.astroyoga.data.model.LocationSearchResultItem
+import com.shushant.astroyoga.data.repo.UserRepository
+import com.shushant.astroyoga.network.utils.Either
 import com.shushant.astroyoga.network.utils.json
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +18,8 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 
 class UserDetailsViewModel(
-    private val preferences: PrefStorage
+    private val preferences: PrefStorage,
+    private val repository: UserRepository
 ) :
     BaseViewModel<UserDetailsState>(UserDetailsState()) {
 
@@ -98,4 +102,36 @@ class UserDetailsViewModel(
         }
     }
 
+    fun createUser() {
+        viewModelScope.launch {
+            val request = CreateUserRequest(
+                filledIndex = state.value.filledIndex,
+                username = state.value.userName,
+                dob = state.value.dob,
+                gender = state.value.gender.name,
+                handReadingData = state.value.handReadingData,
+                pob = json.encodeToString(state.value.pob),
+                tob = state.value.tob,
+                sentimentalStatus = state.value.sentimentalStatus.name,
+                zodiacSign = state.value.dob.getZodiacSign()
+            )
+            setState { state ->
+                state.copy(
+                    loading = true
+                )
+            }
+            when (val result = repository.createUser(request)) {
+                is Either.Error -> setState { state ->
+                    state.copy(
+                        error = result.message,
+                        success = false,
+                        loading = false
+                    )
+                }
+                is Either.Success -> setState {
+                    result.data.mapToUserState().copy(success = true, error = "", loading = false)
+                }
+            }
+        }
+    }
 }

@@ -7,13 +7,16 @@ import com.shushant.astroyoga.onboard.repo.HoroscopeAnalyzeRepositoryImpl
 import com.shushant.astroyoga.onboard.repo.PlaceRepoImpl
 import com.shushant.astroyoga.data.repo.HoroscopeAnalyzeRepository
 import com.shushant.astroyoga.data.repo.PlaceRepository
+import com.shushant.astroyoga.data.repo.UserRepository
+import com.shushant.astroyoga.onboard.repo.UserRepositoryImpl
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val onBoardingModule = module {
-    viewModel { UserDetailsViewModel(get()) }
+    viewModel { UserDetailsViewModel(get(),get()) }
     viewModel { HoroscopeAnalyzerViewModel(get(), get()) }
     viewModel { PlaceOfBirthViewModel(get()) }
     factory<PlaceRepository> { PlaceRepoImpl(get()) }
+    factory<UserRepository> { UserRepositoryImpl(get()) }
     factory<HoroscopeAnalyzeRepository> { HoroscopeAnalyzeRepositoryImpl(get()) }
 }

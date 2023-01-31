@@ -3,13 +3,21 @@ package com.shushant.astroyoga.onboard.filldetails
 import androidx.compose.runtime.Composable
 import com.shushant.astroyoga.data.base.State
 import com.shushant.astroyoga.data.model.LocationSearchResultItem
+import com.shushant.astroyoga.data.model.User
+import com.shushant.astroyoga.network.utils.json
+import com.skydoves.whatif.whatIfNotNullOrEmpty
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
 import java.time.LocalDate
 import java.time.Month
 
 @Serializable
 data class UserDetailsState(
+    val deviceId: String = "",
     val userName: String = "",
+    val success: Boolean = false,
+    val loading: Boolean = false,
+    val error: String = "",
     val gender: Gender = Gender.UNKNOWN,
     val sentimentalStatus: SentimentalStatus = SentimentalStatus.UNKNOWN,
     val dob: String = "",
@@ -17,8 +25,22 @@ data class UserDetailsState(
     val pob: LocationSearchResultItem? = null,
     val handReadingData: String? = null,
     val filledIndex: Int = 0,
-    val zodiacSign: String = if (dob.isNotEmpty()) dob.getZodiacSign() else ""
+    val zodiacSign: String = ""
 ) : State
+
+
+fun User.mapToUserState() = UserDetailsState(
+    deviceId = deviceId ?: "",
+    zodiacSign = dob.getZodiacSign() ?: "",
+    userName = username,
+    pob = pob?.let { json.decodeFromString(it) },
+    sentimentalStatus = SentimentalStatus.valueOf(sentimentalStatus),
+    tob = tob,
+    handReadingData = handReadingData,
+    gender = Gender.valueOf(gender),
+    dob = dob,
+    filledIndex = filledIndex ?: 0
+)
 
 
 data class UserScreens(val action: @Composable (() -> Unit)? = null)
