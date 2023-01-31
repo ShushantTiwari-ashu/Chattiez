@@ -48,7 +48,7 @@ fun rememberAstroAppState(
 @Stable
 class AstroAppState(
     val navController: NavHostController,
-    private val coroutineScope: CoroutineScope,
+    coroutineScope: CoroutineScope,
     val windowSizeClass: WindowSizeClass,
     networkMonitor: NetworkMonitor,
     val navigator: AppComposeNavigator,
