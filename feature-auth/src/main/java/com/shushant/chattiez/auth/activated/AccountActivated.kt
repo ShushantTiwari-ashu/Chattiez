@@ -1,4 +1,4 @@
-package com.shushant.chattiez.auth.activated
+package com.shushant.astroyoga.auth.activated
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize

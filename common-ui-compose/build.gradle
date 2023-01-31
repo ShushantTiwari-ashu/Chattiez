@@ -12,8 +12,8 @@
  * See the GNU General Public License for more details.
  */
 
-import com.shushant.chattiez.buildSrc.App
-import com.shushant.chattiez.buildSrc.Deps
+import com.shushant.astroyoga.buildSrc.App
+import com.shushant.astroyoga.buildSrc.Deps
 
 plugins {
     id "com.android.library"
@@ -49,7 +49,7 @@ android {
     lint {
         disable 'GradleCompatible'
     }
-    namespace 'com.shushant.chattiez.common.compose'
+    namespace 'com.shushant.astroyoga.common.compose'
 }
 
 repositories {
@@ -59,7 +59,6 @@ repositories {
 dependencies {
     // Android
     api Deps.Android.navigationCompose
-    api Deps.Android.navigationHiltCompose
     implementation project(Deps.Modules.CommonResource)
 
     api Deps.Android.Compose.ui
@@ -87,12 +86,20 @@ dependencies {
     api Deps.Android.Accompanist.navigationMaterial
     api Deps.Android.Accompanist.navigationFlowlayout
     api Deps.Android.Accompanist.navigationAnimation
+    api Deps.Android.Accompanist.permissions
     api Deps.Utils.lottie
     api Deps.Utils.coil
     api Deps.Utils.coilCompose
     api Deps.Utils.coilSvg
     api Deps.Utils.timber
+    api Deps.Utils.cameraLifecycle
+    api Deps.Utils.cameraVideo
+    api Deps.Utils.cameraView
+    api Deps.Utils.cameraExtension
     api Deps.Utils.wheelPicker
+    api Deps.Utils.camposer
+    api Deps.Utils.zxingLib
+    api Deps.Utils.permission
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'androidx.core:core-ktx:1.9.0'
 

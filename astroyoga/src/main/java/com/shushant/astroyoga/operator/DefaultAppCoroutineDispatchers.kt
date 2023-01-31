@@ -1,6 +1,6 @@
 package com.shushant.astroyoga.operator
 
-import com.shushant.chattiez.data.utils.AppCoroutineDispatchers
+import com.shushant.astroyoga.data.utils.AppCoroutineDispatchers
 import kotlinx.coroutines.Dispatchers
 
 internal class DefaultAppCoroutineDispatchers : AppCoroutineDispatchers {

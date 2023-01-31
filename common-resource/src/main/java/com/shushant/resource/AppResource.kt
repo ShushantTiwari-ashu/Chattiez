@@ -29,9 +29,14 @@ enum class AppResource(@DrawableRes val drawable: Int) {
     ACTIVATED_NIGHT(R.drawable.activated_night),
     TELL_YOUR_NAME(R.drawable.user_name),
     GENDER(R.drawable.tell_gender),
+    PALM_READING(R.drawable.palm_reading),
+    ENABLE_REMINDER(R.drawable.enable_reminder),
+    ANALYZE_SCOPE(R.drawable.analyze_horoscope),
     SENTIMENTAL_STATUS(R.drawable.sentimental_status),
     SELECT_DOB(R.drawable.select_dob),
+    SELECT_POB(R.drawable.select_place),
     SELECT_TOB(R.drawable.time_of_birth),
+    HOME_PAGE(R.drawable.home_page),
     UNKNOWN(0)
 }
 

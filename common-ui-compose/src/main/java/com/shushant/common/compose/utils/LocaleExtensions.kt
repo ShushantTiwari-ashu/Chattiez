@@ -8,8 +8,17 @@ import java.util.Locale
 
 val Context.primaryLocale: Locale
     get() =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            resources.configuration.locales[0]
-        } else {
-            resources.configuration.locale
-        }
+        resources.configuration.locales[0]
+
+
+internal fun Float.roundTo(n: Int): Float {
+    return try {
+        "%.${n}f".format(Locale.US, this).toFloat()
+    } catch (e: NumberFormatException) {
+        this
+    }
+}
+
+val Int.minutes get() = (this / 60).toString().padStart(2, '0')
+
+val Int.seconds get() = (this % 60).toString().padStart(2, '0')

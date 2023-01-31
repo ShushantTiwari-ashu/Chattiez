@@ -1,9 +1,10 @@
-rootProject.name = "Chattiez"
+rootProject.name = "AstroYoga"
 include ':astroyoga'
 include ':navigation'
 include ':common-ui-compose'
 include ':core-data'
 include ':core-network'
 include ':common-resource'
-include ':feature-onboard'
-include ':feature-auth'
+include ':feature:onboard'
+include ':feature:main'
+include ':feature:horoscope'

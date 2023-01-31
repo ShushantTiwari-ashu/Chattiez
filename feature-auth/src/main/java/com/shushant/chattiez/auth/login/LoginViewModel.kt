@@ -1,8 +1,8 @@
-package com.shushant.chattiez.auth.login
+package com.shushant.astroyoga.auth.login
 
 import androidx.lifecycle.viewModelScope
-import com.shushant.chattiez.data.base.BaseViewModel
-import com.shushant.chattiez.network.client.AccountService
+import com.shushant.astroyoga.data.base.BaseViewModel
+import com.shushant.astroyoga.network.client.AccountService
 import com.shushant.common.compose.ui.AuthValidator
 import kotlinx.coroutines.launch
 

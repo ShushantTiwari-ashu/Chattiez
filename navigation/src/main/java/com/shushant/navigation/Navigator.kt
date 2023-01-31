@@ -15,6 +15,7 @@
 package com.shushant.navigation
 
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.NavOptionsBuilder
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,11 +28,12 @@ abstract class Navigator {
 
     // We use a StateFlow here to allow ViewModels to start observing navigation results before the initial composition,
     // and still get the navigation result later
-    val navControllerFlow = MutableStateFlow<NavController?>(null)
+    val navControllerFlow = MutableStateFlow<NavHostController?>(null)
 
     fun navigateUp() {
         navigationCommands.tryEmit(NavigationCommand.NavigateUp)
     }
+
     fun pop() {
         navigationCommands.tryEmit(NavigationCommand.Pop)
     }
@@ -42,9 +44,9 @@ abstract class AppComposeNavigator : Navigator() {
     abstract fun <T> navigateBackWithResult(key: String, result: T, route: String?)
 
     abstract fun popUpTo(route: String, inclusive: Boolean)
-    abstract fun navigateAndClearBackStack(route: String)
+    abstract fun navigateAndClearBackStack(route: String, popUpto: String)
 
-    suspend fun handleNavigationCommands(navController: NavController) {
+    suspend fun handleNavigationCommands(navController: NavHostController) {
         navigationCommands
             .onSubscription { this@AppComposeNavigator.navControllerFlow.value = navController }
             .onCompletion { this@AppComposeNavigator.navControllerFlow.value = null }

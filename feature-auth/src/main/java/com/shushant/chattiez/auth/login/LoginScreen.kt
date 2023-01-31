@@ -1,4 +1,4 @@
-package com.shushant.chattiez.auth.login
+package com.shushant.astroyoga.auth.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.shushant.chatiez.feature.auth.R
-import com.shushant.chattiez.auth.common.BottomSection
+import com.shushant.astroyoga.auth.common.BottomSection
 import com.shushant.common.compose.theme.Typography
 import com.shushant.common.compose.theme.snackbarHostState
 import com.shushant.common.compose.theme.textColor
@@ -40,7 +40,7 @@ fun LoginScreen(
 
     LaunchedEffect(loginUiState.isLoggedIn) {
         if (loginUiState.isLoggedIn) {
-            composeNavigator.navigateAndClearBackStack(ChattiezScreens.AccountActivated.route)
+            composeNavigator.navigateAndClearBackStack(ChattiezScreens.OnBoarding.route)
         }
     }
 

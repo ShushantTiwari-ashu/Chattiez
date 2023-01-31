@@ -1,5 +1,5 @@
-import com.shushant.chattiez.buildSrc.App
-import com.shushant.chattiez.buildSrc.Deps
+import com.shushant.astroyoga.buildSrc.App
+import com.shushant.astroyoga.buildSrc.Deps
 
 plugins {
     id 'com.github.ben-manes.versions'
@@ -117,10 +117,9 @@ dependencies {
     api Deps.Android.Lifecycle.vmSavedState
     implementation project(Deps.Modules.Navigation)
     implementation project(Deps.Modules.FeatureOnBoard)
+    implementation project(Deps.Modules.FeatureMain)
     implementation project(Deps.Modules.CoreData)
     implementation project(Deps.Modules.CommonResource)
-    implementation project(Deps.Modules.FeatureAuth)
-
     testImplementation(Deps.Utils.junit)
     testImplementation(Deps.Utils.junit)
 

@@ -1,4 +1,4 @@
-package com.shushant.chattiez.auth
+package com.shushant.astroyoga.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -10,7 +10,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.shushant.chatiez.feature.auth.R
-import com.shushant.chattiez.auth.common.BottomSection
+import com.shushant.astroyoga.auth.common.BottomSection
 import com.shushant.common.compose.theme.Dimens
 import com.shushant.common.compose.ui.ChattiezButton
 import com.shushant.common.compose.ui.GradientButton

@@ -1,6 +1,6 @@
 package com.shushant.astroyoga.di
 
-import com.shushant.chattiez.data.utils.AppCoroutineDispatchers
+import com.shushant.astroyoga.data.utils.AppCoroutineDispatchers
 import com.shushant.astroyoga.operator.DefaultAppCoroutineDispatchers
 import com.shushant.astroyoga.ui.MainViewModel
 import com.shushant.common.compose.utils.ActivityProvider

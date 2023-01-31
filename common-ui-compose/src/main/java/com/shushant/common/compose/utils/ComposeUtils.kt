@@ -1,9 +1,11 @@
 package com.shushant.common.compose.utils
 
+import androidx.compose.foundation.clickable
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.LinearGradientShader
@@ -50,3 +52,5 @@ val Float.brush: ShaderBrush
             }
         }
     }
+
+fun Modifier.noClickable() = then(Modifier.clickable(enabled = false) {})
