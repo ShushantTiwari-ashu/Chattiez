@@ -10,7 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.pager.rememberPagerState
 import com.shushant.astroyoga.onboard.navigation.OnBoarding
+import com.shushant.common.compose.ui.AppLoader
 import com.shushant.common.compose.ui.BackPressHandler
+import com.shushant.common.compose.ui.ChattiezLoadingIndicator
 import com.shushant.common.compose.ui.carousel.CarouselView
 import com.shushant.navigation.AppComposeNavigator
 import com.shushant.navigation.Graph
@@ -26,12 +28,18 @@ fun GetDetailsCarousel(
     val composable by viewModel.composableScreens.collectAsStateWithLifecycle()
     val pagerState = rememberPagerState(initialPage = selectedIndex)
     val scope = rememberCoroutineScope()
+    val userState by viewModel.state.collectAsStateWithLifecycle()
+
+    if (userState.success) {
+        composeNavigator.navigateAndClearBackStack(
+            OnBoarding.AnalyzeDetails.name,
+            Graph.ROOT
+        )
+    }
+
     getCarouselItems(viewModel = viewModel, navigate = {
         scope.launch {
-            composeNavigator.navigateAndClearBackStack(
-                OnBoarding.AnalyzeDetails.name,
-                Graph.ROOT
-            )
+            viewModel.createUser()
         }
     }) {
         scope.launch {
@@ -41,6 +49,10 @@ fun GetDetailsCarousel(
         LaunchedEffect(key1 = Unit) {
             viewModel.addComposable(this@run)
         }
+    }
+
+    if (userState.loading) {
+        AppLoader()
     }
 
     BackPressHandler(onBackPressed = { })
