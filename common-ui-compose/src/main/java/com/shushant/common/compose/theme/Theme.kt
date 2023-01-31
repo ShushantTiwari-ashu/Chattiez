@@ -8,6 +8,8 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalConfiguration
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.shushant.common.compose.utils.*
@@ -174,6 +176,13 @@ val buttonColor: Color
         BUTTON_COLOR_PURPLE
     else
         WHITE200
+val Boolean.bottomBarColor: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = if (this)
+        NAME_COLOR
+    else
+        Color.Black.copy(0.4f)
 
 
 @get:DrawableRes
@@ -214,3 +223,15 @@ object ChattiezTheme {
 val Dimens: Dimens
     @Composable
     get() = ChattiezTheme.dimens
+
+
+object AstroNavigationColorDefaults {
+    @Composable
+    fun navigationContentColor() = Color.Black.copy(0.4f)
+
+    @Composable
+    fun navigationSelectedItemColor() = NAME_COLOR
+
+    @Composable
+    fun navigationIndicatorColor() = White
+}

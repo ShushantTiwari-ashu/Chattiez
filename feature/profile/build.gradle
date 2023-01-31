@@ -49,7 +49,7 @@ android {
     lint {
         disable 'GradleCompatible'
     }
-    namespace 'com.shushant.astroyoga.feature.main'
+    namespace 'com.shushant.astroyoga.feature.profile'
 }
 
 repositories {

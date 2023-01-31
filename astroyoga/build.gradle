@@ -117,7 +117,7 @@ dependencies {
     api Deps.Android.Lifecycle.vmSavedState
     implementation project(Deps.Modules.Navigation)
     implementation project(Deps.Modules.FeatureOnBoard)
-    implementation project(Deps.Modules.FeatureMain)
+    implementation project(Deps.Modules.FeatureCompatibility)
     implementation project(Deps.Modules.CoreData)
     implementation project(Deps.Modules.CommonResource)
     testImplementation(Deps.Utils.junit)
