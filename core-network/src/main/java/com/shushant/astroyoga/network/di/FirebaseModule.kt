@@ -35,6 +35,7 @@ val firebaseModule = module {
                 level = LogLevel.ALL
                 logger = CustomHttpLogger()
             }
+
             install(ResponseObserver) {
                 onResponse { response ->
                     Timber.d("HTTP status:", "${response.status.value}")

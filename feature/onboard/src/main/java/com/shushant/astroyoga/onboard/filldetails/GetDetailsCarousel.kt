@@ -37,7 +37,7 @@ fun GetDetailsCarousel(
         )
     }
 
-    getCarouselItems(viewModel = viewModel, navigate = {
+    getCarouselItems(viewModel = viewModel, userState = userState, navigate = {
         scope.launch {
             viewModel.createUser()
         }

@@ -2,12 +2,13 @@ package com.shushant.astroyoga.onboard.filldetails
 
 import androidx.compose.runtime.Composable
 import com.shushant.astroyoga.data.base.State
+import com.shushant.astroyoga.data.model.CreateUserRequest
 import com.shushant.astroyoga.data.model.LocationSearchResultItem
-import com.shushant.astroyoga.data.model.User
+import com.shushant.astroyoga.data.model.UserResponse
 import com.shushant.astroyoga.network.utils.json
-import com.skydoves.whatif.whatIfNotNullOrEmpty
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import java.time.LocalDate
 import java.time.Month
 
@@ -29,19 +30,30 @@ data class UserDetailsState(
 ) : State
 
 
-fun User.mapToUserState() = UserDetailsState(
-    deviceId = deviceId ?: "",
-    zodiacSign = dob.getZodiacSign() ?: "",
-    userName = username,
-    pob = pob?.let { json.decodeFromString(it) },
-    sentimentalStatus = SentimentalStatus.valueOf(sentimentalStatus),
-    tob = tob,
-    handReadingData = handReadingData,
-    gender = Gender.valueOf(gender),
-    dob = dob,
-    filledIndex = filledIndex ?: 0
+fun UserResponse.mapToUserState() = UserDetailsState(
+    deviceId = data?.deviceId ?: "",
+    zodiacSign = data?.dob?.getZodiacSign() ?: "",
+    userName = data?.username ?: "",
+    pob = data?.pob?.let { json.decodeFromString(it) },
+    sentimentalStatus = SentimentalStatus.valueOf(data?.sentimentalStatus ?: ""),
+    tob = data?.tob ?: "",
+    handReadingData = data?.handReadingData,
+    gender = Gender.valueOf(data?.gender ?: ""),
+    dob = data?.dob ?: "",
+    filledIndex = data?.filledIndex ?: 0
 )
 
+fun UserDetailsState.toCreateUserRequest() = CreateUserRequest(
+    filledIndex = filledIndex,
+    username = userName,
+    dob = dob,
+    gender = gender.name,
+    handReadingData = handReadingData,
+    pob = json.encodeToString(pob),
+    tob = tob,
+    sentimentalStatus = sentimentalStatus.name,
+    zodiacSign = dob.getZodiacSign()
+)
 
 data class UserScreens(val action: @Composable (() -> Unit)? = null)
 
@@ -69,6 +81,7 @@ val sentimentalStatus = mutableListOf(
     SentimentalStatus.WIDOWED,
 )
 
+//aries, taurus, gemini, cancer, leo, virgo, libra, scorpio, sagittarius, capricorn, aquarius and pisces
 fun String.getZodiacSign(): String {
     val dob = LocalDate.parse(this)
     val day = dob.dayOfMonth

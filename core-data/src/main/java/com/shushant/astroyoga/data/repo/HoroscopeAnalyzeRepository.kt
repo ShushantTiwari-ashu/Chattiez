@@ -8,6 +8,5 @@ interface HoroscopeAnalyzeRepository {
 }
 
 data class HoroScopeRequest(
-    val sign: String,
-    val day: String = "today"
+    val deviceId:String = ""
 )
