@@ -3,25 +3,17 @@ package com.shushant.astroyoga.onboard.filldetails
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewModelScope
 import com.shushant.astroyoga.data.base.BaseViewModel
-import com.shushant.astroyoga.data.datastore.PrefStorage
-import com.shushant.astroyoga.data.model.CreateUserRequest
 import com.shushant.astroyoga.data.model.LocationSearchResultItem
-import com.shushant.astroyoga.data.repo.UserRepository
 import com.shushant.astroyoga.network.utils.Either
-import com.shushant.astroyoga.network.utils.json
-import com.skydoves.whatif.whatIfNotNullOrEmpty
+import com.shushant.astroyoga.onboard.usecase.UserDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 
 class UserDetailsViewModel(
-    private val preferences: PrefStorage,
-    private val repository: UserRepository
-) :
-    BaseViewModel<UserDetailsState>(UserDetailsState()) {
+    private val useCase: UserDetailsUseCase
+) : BaseViewModel<UserDetailsState>(UserDetailsState()) {
 
     val composableScreens = MutableStateFlow(emptyList<UserScreens>())
 
@@ -29,17 +21,26 @@ class UserDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            preferences.getUserState.first().whatIfNotNullOrEmpty { data ->
-                setState {
-                    try {
-                        json.decodeFromString(data)
-                    } catch (e: Exception) {
-                        UserDetailsState()
+            getUserData()
+        }
+
+    }
+
+    private suspend fun getUserData() {
+        useCase.getUserFromStorage().collectLatest { userDetailsStateEither ->
+            when (userDetailsStateEither) {
+                is Either.Error -> setError(userDetailsStateEither.message)
+                is Either.Success -> {
+                    setState {
+                        try {
+                            it.copy(loading = false)
+                        } catch (e: Exception) {
+                            UserDetailsState()
+                        }
                     }
                 }
             }
         }
-
     }
 
     fun setSelectedIndex(page: Int) {
@@ -74,7 +75,7 @@ class UserDetailsViewModel(
 
     private fun updatePref() {
         viewModelScope.launch {
-            preferences.setUserData(json.encodeToString(state.value))
+            useCase.setUserData(state.value)
         }
     }
 
@@ -104,34 +105,30 @@ class UserDetailsViewModel(
 
     fun createUser() {
         viewModelScope.launch {
-            val request = CreateUserRequest(
-                filledIndex = state.value.filledIndex,
-                username = state.value.userName,
-                dob = state.value.dob,
-                gender = state.value.gender.name,
-                handReadingData = state.value.handReadingData,
-                pob = json.encodeToString(state.value.pob),
-                tob = state.value.tob,
-                sentimentalStatus = state.value.sentimentalStatus.name,
-                zodiacSign = state.value.dob.getZodiacSign()
+            startLoading()
+            val request = state.value.toCreateUserRequest()
+            when (val result = useCase(request)) {
+                is Either.Error -> setError(result.message)
+                is Either.Success -> {
+                    getUserData()
+                }
+            }
+        }
+    }
+
+    private fun setError(message: String) {
+        setState { state ->
+            state.copy(
+                error = message, success = false, loading = false
             )
-            setState { state ->
-                state.copy(
-                    loading = true
-                )
-            }
-            when (val result = repository.createUser(request)) {
-                is Either.Error -> setState { state ->
-                    state.copy(
-                        error = result.message,
-                        success = false,
-                        loading = false
-                    )
-                }
-                is Either.Success -> setState {
-                    result.data.mapToUserState().copy(success = true, error = "", loading = false)
-                }
-            }
+        }
+    }
+
+    private fun startLoading() {
+        setState { state ->
+            state.copy(
+                loading = true
+            )
         }
     }
 }

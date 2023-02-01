@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class HoroscopeAnalyzerViewModel(
     private val repository: HoroscopeAnalyzeRepository, private val prefStorage: PrefStorage
@@ -29,7 +30,7 @@ class HoroscopeAnalyzerViewModel(
     private fun getHoroScope() {
         viewModelScope.launch {
             prefStorage.getTodayHoroscope.first().time.takeIf { it?.isNotEmpty() == true }?.let {
-                if (LocalDate.parse(prefStorage.getTodayHoroscope.first().time).dayOfMonth < LocalDate.now().dayOfMonth) {
+                if (LocalDateTime.parse(prefStorage.getTodayHoroscope.first().time).dayOfMonth < LocalDate.now().dayOfMonth) {
                     fetchData()
                 } else {
                     fetchDataFromPrefStorage()
@@ -51,7 +52,7 @@ class HoroscopeAnalyzerViewModel(
             json.decodeFromString<UserDetailsState>(userState).let { userDetailsState ->
                 when (val result = repository.getHoroscope(
                     HoroScopeRequest(
-                        sign = userDetailsState.dob.getZodiacSign(), day = "today"
+                        deviceId = userDetailsState.deviceId
                     )
                 )) {
                     is Either.Error -> setState { state -> state.copy(error = result.message) }

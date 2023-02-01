@@ -7,10 +7,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun getCarouselItems(
     viewModel: UserDetailsViewModel,
+    userState: UserDetailsState,
     navigate: () -> Unit,
     action: () -> Unit,
 ): List<@Composable () -> Unit> {
-    val userState by viewModel.state.collectAsStateWithLifecycle()
     return mutableListOf<@Composable (() -> Unit)>().apply {
         add {
             UserNameItem(viewModel::setUserName, userState) {
