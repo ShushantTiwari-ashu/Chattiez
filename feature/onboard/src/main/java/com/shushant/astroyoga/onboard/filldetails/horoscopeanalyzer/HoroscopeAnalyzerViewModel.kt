@@ -5,6 +5,7 @@ import com.shushant.astroyoga.data.base.BaseViewModel
 import com.shushant.astroyoga.data.base.State
 import com.shushant.astroyoga.data.datastore.PrefStorage
 import com.shushant.astroyoga.data.model.HoroscopeResponse
+import com.shushant.astroyoga.data.model.UserResponse
 import com.shushant.astroyoga.data.repo.HoroScopeRequest
 import com.shushant.astroyoga.data.repo.HoroscopeAnalyzeRepository
 import com.shushant.astroyoga.network.utils.Either
@@ -49,10 +50,10 @@ class HoroscopeAnalyzerViewModel(
 
     private suspend fun fetchData() {
         prefStorage.getUserState.first().whatIfNotNullOrEmpty { userState ->
-            json.decodeFromString<UserDetailsState>(userState).let { userDetailsState ->
+            json.decodeFromString<UserResponse>(userState).let { userDetailsState ->
                 when (val result = repository.getHoroscope(
                     HoroScopeRequest(
-                        deviceId = userDetailsState.deviceId
+                        deviceId = userDetailsState.data?.deviceId ?: ""
                     )
                 )) {
                     is Either.Error -> setState { state -> state.copy(error = result.message) }

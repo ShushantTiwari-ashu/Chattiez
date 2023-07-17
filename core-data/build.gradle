@@ -55,8 +55,8 @@ repositories {
 }
 
 dependencies {
-    api project(":common-ui-compose")
-    api project(":core-network")
+    api project(Deps.Modules.CommonUiCompose)
+    api project(Deps.Modules.CoreNetwork)
 
     api Deps.Android.Room.paging
     api Deps.Kotlin.stdlib

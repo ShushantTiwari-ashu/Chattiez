@@ -33,7 +33,7 @@ class UserDetailsViewModel(
                 is Either.Success -> {
                     setState {
                         try {
-                            it.copy(loading = false)
+                            it.copy(loading = false, success = true)
                         } catch (e: Exception) {
                             UserDetailsState()
                         }

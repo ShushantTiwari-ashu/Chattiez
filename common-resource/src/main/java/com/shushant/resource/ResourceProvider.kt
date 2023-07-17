@@ -1,8 +1,10 @@
 package com.shushant.resource
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.annotation.*
+import androidx.compose.ui.text.toLowerCase
 import androidx.core.content.ContextCompat
 
 class ResourceProvider constructor(private val context: Context) {
@@ -33,6 +35,15 @@ class ResourceProvider constructor(private val context: Context) {
 
     fun getDrawable(@DrawableRes drawableId: Int): Drawable {
         return requireNotNull(ContextCompat.getDrawable(context, drawableId))
+    }
+
+    @SuppressLint("DiscouragedApi")
+    fun getIcon(drawableName: String, defType: String):  Int {
+        return context.resources.getIdentifier(
+            drawableName.lowercase(),
+            defType,
+            context.packageName
+        )
     }
 
 }

@@ -16,6 +16,7 @@ package com.shushant.astroyoga.buildSrc
 
 object App {
     const val id = "com.shushant.chattiez"
+    const val chatgptId = "com.shushant.chatgpt"
     const val astroYogaAppId = "com.shushant.astroyoga"
 
     const val compileSdkVersion = 33

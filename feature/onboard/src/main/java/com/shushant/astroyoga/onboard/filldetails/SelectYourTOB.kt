@@ -63,7 +63,7 @@ fun SelectorTOBItem(
             )
 
             Text(
-                text = stringResource(R.string.select_dob),
+                text = stringResource(R.string.select_tob),
                 color = Color.Black,
                 style = Typography.bodyLarge.copy(
                     fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Start

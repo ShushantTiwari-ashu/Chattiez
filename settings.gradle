@@ -1,5 +1,6 @@
 rootProject.name = "AstroYoga"
 include ':astroyoga'
+include ':chatgpt'
 include ':navigation'
 include ':common-ui-compose'
 include ':core-data'

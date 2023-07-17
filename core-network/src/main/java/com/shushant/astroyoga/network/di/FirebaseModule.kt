@@ -22,7 +22,7 @@ import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 import timber.log.Timber
 
-val firebaseModule = module {
+val networkModule = module {
     single<AccountService> { AccountServiceImpl(get()) }
     single { Firebase.auth }
     single { Firebase.database }

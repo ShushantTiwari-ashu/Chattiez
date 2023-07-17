@@ -1,6 +1,8 @@
 package com.shushant.resource
 
 import androidx.annotation.DrawableRes
+import java.time.LocalDate
+import java.time.Month
 
 enum class AppResource(@DrawableRes val drawable: Int) {
     LOGO(R.drawable.logo_mark),
@@ -9,6 +11,7 @@ enum class AppResource(@DrawableRes val drawable: Int) {
     ASTRO_BACKGROUND(R.drawable.astro_background),
     BG_ON_BOARDING1(R.drawable.bg_onboarding),
     ASTRO_ON_BOARDING(R.drawable.onboarding),
+    CHAT_BACK(R.drawable.chat_back),
     BG_SVG(R.drawable.bg),
     ILLUSTRATION(R.drawable.illustration),
     ASTRO_ILLUSTRATION(R.drawable.astro_illustration),
@@ -36,8 +39,56 @@ enum class AppResource(@DrawableRes val drawable: Int) {
     SELECT_DOB(R.drawable.select_dob),
     SELECT_POB(R.drawable.select_place),
     SELECT_TOB(R.drawable.time_of_birth),
-    HOME_PAGE(R.drawable.home_page),
+    Compatibility(R.drawable.home_page),
+    DASHBOARD(R.drawable.dashboard),
     UNKNOWN(0)
 }
 
 fun Boolean.getPasswordToggle() = if (this) AppResource.PASSWORD else AppResource.PASSWORD_TOGGLE
+
+fun String.getZodiacResource():  Int {
+    return when (this) {
+        "Capricorn" -> {
+            R.drawable.capricorn
+        }
+        "Aquarius" -> {
+            R.drawable.aquarius
+        }
+        "Pisces" -> {
+            R.drawable.pisces
+        }
+
+        "Taurus" -> {
+            R.drawable.taurus
+        }
+        "Aries" -> {
+            R.drawable.aries
+        }
+        "Gemini" -> {
+            R.drawable.gemini
+        }
+        "Cancer" -> {
+            R.drawable.cancer
+        }
+        "Leo" -> {
+            R.drawable.leo
+        }
+
+        "Virgo" -> {
+            R.drawable.virgo
+        }
+
+        "Libra" -> {
+            R.drawable.libra
+        }
+        "Scorpio" -> {
+            R.drawable.scorpio
+        }
+        "Sagittarius" -> {
+            R.drawable.sagittarius
+        }
+        else -> {
+            0
+        }
+    }
+}

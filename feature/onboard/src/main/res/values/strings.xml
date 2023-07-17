@@ -27,4 +27,5 @@
     <string name="horoscope_remiders">Horoscope reminders</string>
     <string name="remind_about_horoscope">Enable push notifications and I will send you daily reminders about new horoscope.</string>
     <string name="enable_rem">ENABLE REMINDER</string>
+    <string name="select_tob">Select your time of birth</string>
 </resources>
